@@ -1,0 +1,2886 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:ax2418="http://endpoint.amx.api.admin.amf.tibco.com/xsd"
+                  xmlns:ax2408="http://exception.core.api.admin.amf.tibco.com/xsd"
+                  xmlns:ns="http://endpoint.amx.api.admin.amf.tibco.com"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:ns1="http://org.apache.axis2/xsd"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+                  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+                  xmlns:ax2410="http://fixer.core.api.admin.amf.tibco.com/xsd"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:ax2413="http://types.core.api.admin.amf.tibco.com/xsd"
+                  xmlns:ax2415="http://application.amx.api.admin.amf.tibco.com/xsd"
+                  targetNamespace="http://endpoint.amx.api.admin.amf.tibco.com">
+   <wsdl:documentation>EndpointService</wsdl:documentation>
+   <wsdl:types>
+      <xs:schema xmlns:ax2416="http://types.core.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://application.amx.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://types.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="NodeIdentifier">
+            <xs:complexContent>
+               <xs:extension base="ax2416:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="host" nillable="true" type="ax2416:EntityIdentifier"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax2420="http://endpoint.amx.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax2412="http://exception.core.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax2414="http://types.core.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax2417="http://application.amx.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://endpoint.amx.api.admin.amf.tibco.com">
+         <xs:import namespace="http://exception.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://types.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://application.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://endpoint.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="Exception">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="Exception" nillable="true" type="xs:anyType"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="AdminException">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="AdminException" nillable="true"
+                              type="ax2412:AdminException"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getNodesMappedToReference">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getNodesMappedToReferenceResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2417:NodeIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getNodesMappedToService">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getNodesMappedToServiceResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2417:NodeIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnvEndPoints">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnvEndPointsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2420:PromotedEP"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getReferenceConfigBindingDesc">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getReferenceConfigBindingDescResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" nillable="true"
+                              type="ax2420:ReferenceConfigBindingDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getReferenceDescs">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getReferenceDescsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2420:ReferenceDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getServiceDescs">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getServiceDescsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2420:ServiceDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getReferenceWire">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getReferenceWireResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" nillable="true" type="ax2420:WireDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnvWiresIn">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnvWiresInResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2420:WireDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnvWiresOut">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnvWiresOutResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2420:WireDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getWiresToService">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getWiresToServiceResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2420:WireDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getWiresToServiceBinding">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getWiresToServiceBindingResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2420:WireDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getWiresToServiceByState">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" type="xs:boolean"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getWiresToServiceByStateResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2420:WireDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getWiresToServices">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getWiresToServicesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2420:WireDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnvWireSources">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" type="xs:boolean"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnvWireSourcesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2420:WireSourceDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getWireSources">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" type="xs:boolean"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getWireSourcesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2420:WireSourceDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getWireTargets">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" type="xs:boolean"/>
+                  <xs:element minOccurs="0" name="param2" type="xs:boolean"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getWireTargetsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2420:WireTargetDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getWireTargetsWithSameType">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" type="xs:boolean"/>
+                  <xs:element minOccurs="0" name="param2" type="xs:boolean"/>
+                  <xs:element minOccurs="0" name="param3" type="xs:boolean"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getWireTargetsWithSameTypeResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2420:WireTargetDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnvPromotedServiceSource">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnvPromotedServiceSourceResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getRealServices">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getRealServicesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getRealReferences">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getRealReferencesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setWires">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2420:WireDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setWiresResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2414:MultiTargetResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="deleteWires">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="deleteWiresResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2414:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setReferencesToNodes">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2414:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setReferencesToNodesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2414:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setServicesToNodes">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2414:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setServicesToNodesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2414:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="addServicePromotedToEnvironment">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="addServicePromotedToEnvironmentResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="deleteWire">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="deleteWireResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="removeServicePromotedToEnvironment">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="removeServicePromotedToEnvironmentResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="renameEnvReference">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="renameEnvReferenceResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="renameEnvService">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="renameEnvServiceResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setAllReferencesPromotedToEnvironment">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2414:StringEntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setAllReferencesPromotedToEnvironmentResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setAllServicesPromotedToEnvironment">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2420:EnvServicePromotionDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setAllServicesPromotedToEnvironmentResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setReferencePromotedToEnvironment">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setReferencePromotedToEnvironmentResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setServicesPromotedToEnvironment">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setServicesPromotedToEnvironmentResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getServiceUrlForBinding">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getServiceUrlForBindingResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getAllCompatibleEnvReferenceNames">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getAllCompatibleEnvReferenceNamesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getOperationsForReference">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getOperationsForReferenceResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getOperationsForService">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getOperationsForServiceResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getServiceWsdlForBinding">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="ax2414:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getServiceWsdlForBindingResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" nillable="true" type="xs:base64Binary"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getServiceWsdlForBindingWithHostName">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param2" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getServiceWsdlForBindingWithHostNameResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" nillable="true" type="xs:base64Binary"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getReference">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param2" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getReferenceResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:long"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getService">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="ax2414:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param2" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getServiceResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:long"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:schema>
+      <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified"
+                 targetNamespace="http://fixer.core.api.admin.amf.tibco.com/xsd">
+         <xs:complexType name="FixerHolder">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="fixer" nillable="true" type="ax2410:BaseFixer"/>
+               <xs:element minOccurs="0" name="fixerType" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="BaseFixer">
+            <xs:sequence/>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax2421="http://exception.core.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://types.core.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://exception.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="EntityIdentifier">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="id" type="xs:long"/>
+               <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="EntityDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2413:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="type" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="EntityStatusDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2413:EntityDesc">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="actionStatus" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="localizedState" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="stateEnum" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="status" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="StringEntityIdentifier">
+            <xs:complexContent>
+               <xs:extension base="ax2413:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="displayValue" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="value" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="ResultMessage">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="actionHandle" nillable="true" type="xs:string"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="dependenciesPerEntityList"
+                           nillable="true"
+                           type="ax2413:DependenciesPerEntity"/>
+               <xs:element minOccurs="0" name="exception" nillable="true" type="xs:anyType"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="faultDetails" nillable="true"
+                           type="ax2421:AdminFaultDetail"/>
+               <xs:element minOccurs="0" name="id" nillable="true" type="ax2413:EntityIdentifier"/>
+               <xs:element minOccurs="0" name="messageCode" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="messageType" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="success" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="summary" nillable="true" type="xs:string"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="taskIds" nillable="true"
+                           type="xs:long"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="DependenciesPerEntity">
+            <xs:sequence>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="dependencies" nillable="true"
+                           type="xs:long"/>
+               <xs:element minOccurs="0" name="entityDesc" nillable="true" type="ax2413:EntityDesc"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="MultiTargetResultMessage">
+            <xs:complexContent>
+               <xs:extension base="ax2413:ResultMessage">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="targetId" nillable="true" type="ax2413:EntityIdentifier"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax2409="http://endpoint.amx.api.admin.amf.tibco.com"
+                 xmlns:ax2411="http://fixer.core.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://exception.core.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://endpoint.amx.api.admin.amf.tibco.com"/>
+         <xs:import namespace="http://fixer.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="AdminException">
+            <xs:complexContent>
+               <xs:extension base="ns:Exception">
+                  <xs:sequence>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="faultDetails" nillable="true"
+                                 type="ax2408:AdminFaultDetail"/>
+                     <xs:element minOccurs="0" name="summary" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="AdminFaultDetail">
+            <xs:sequence>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="causes" nillable="true"
+                           type="xs:string"/>
+               <xs:element minOccurs="0" name="detail" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="exception" nillable="true" type="xs:anyType"/>
+               <xs:element minOccurs="0" name="field" nillable="true" type="xs:string"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="fixerHolders" nillable="true"
+                           type="ax2411:FixerHolder"/>
+               <xs:element minOccurs="0" name="severity" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax2419="http://types.core.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://endpoint.amx.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://types.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="PromotedEP">
+            <xs:complexContent>
+               <xs:extension base="ax2413:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="isService" nillable="true" type="xs:boolean"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="sources" nillable="true"
+                                 type="ax2418:EndPointSource"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="EndPointSource">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="applicationPath" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="sourceEndpoint" nillable="true"
+                           type="ax2413:EntityIdentifier"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="ReferenceConfigBindingDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2413:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="applicationPath" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="bindingType" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="manual" type="xs:boolean"/>
+                     <xs:element minOccurs="0" name="serviceBinding" nillable="true"
+                                 type="ax2413:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="serviceName" nillable="true" type="xs:string"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="statusPerNode" nillable="true"
+                                 type="ax2413:EntityStatusDesc"/>
+                     <xs:element minOccurs="0" name="wiredByImpl" type="xs:boolean"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="ReferenceDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2413:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="applicationPath" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="binding" nillable="true" type="ax2413:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="bindingModifyAllowed" type="xs:boolean"/>
+                     <xs:element minOccurs="0" name="bindingModifyFailedReason" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="bindingType" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="conversation" type="xs:boolean"/>
+                     <xs:element minOccurs="0" name="hasContextParameters" type="xs:boolean"/>
+                     <xs:element minOccurs="0" name="intents" nillable="true" type="xs:anyType"/>
+                     <xs:element minOccurs="0" name="parent" nillable="true" type="ax2413:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="parentType" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="portType" nillable="true" type="xs:string"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="promotes" nillable="true"
+                                 type="ax2413:StringEntityIdentifier"/>
+                     <xs:element minOccurs="0" name="referenceNamePromotedToEnvironment" nillable="true"
+                                 type="xs:string"/>
+                     <xs:element minOccurs="0" name="serviceBindingName" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="serviceName" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="wireTarget" nillable="true" type="ax2413:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="wireType" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="wiredByImpl" type="xs:boolean"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="ServiceDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2413:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="bindings" nillable="true"
+                                 type="ax2413:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="conversation" type="xs:boolean"/>
+                     <xs:element minOccurs="0" name="direction" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="hasContextParameters" type="xs:boolean"/>
+                     <xs:element minOccurs="0" name="intents" nillable="true" type="xs:anyType"/>
+                     <xs:element minOccurs="0" name="parent" nillable="true" type="ax2413:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="parentType" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="portType" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="promotes" nillable="true" type="ax2413:EntityIdentifier"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="serviceNamesPromotedToEnvironment"
+                                 nillable="true"
+                                 type="xs:string"/>
+                     <xs:element minOccurs="0" name="sourceComponent" nillable="true"
+                                 type="ax2413:EntityIdentifier"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="WireDesc">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="applicationPath" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="environmentId" nillable="true"
+                           type="ax2413:EntityIdentifier"/>
+               <xs:element minOccurs="0" name="jndiName" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="referenceDeployed" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="referenceId" nillable="true" type="ax2413:EntityIdentifier"/>
+               <xs:element minOccurs="0" name="serviceBindingId" nillable="true"
+                           type="ax2413:EntityIdentifier"/>
+               <xs:element minOccurs="0" name="serviceId" nillable="true" type="ax2413:EntityIdentifier"/>
+               <xs:element minOccurs="0" name="wireType" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="WireSourceDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2413:ResultMessage">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="applicationPath" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="sourceApplicationId" nillable="true"
+                                 type="ax2413:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="sourceApplicationPath" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="sourceComponentId" nillable="true"
+                                 type="ax2413:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="sourceEnvironmentId" nillable="true"
+                                 type="ax2413:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="sourceReferenceId" nillable="true"
+                                 type="ax2413:EntityIdentifier"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="WireTargetDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2413:ResultMessage">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="targetApplicationId" nillable="true"
+                                 type="ax2413:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="targetApplicationPath" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="targetDeployedBindingId" nillable="true"
+                                 type="ax2413:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="targetDeployedComponentId" nillable="true"
+                                 type="ax2413:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="targetDeployedServiceId" nillable="true"
+                                 type="ax2413:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="targetEnvironmentId" nillable="true"
+                                 type="ax2413:EntityIdentifier"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="EnvServicePromotionDesc">
+            <xs:sequence>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="envServiceNames" nillable="true"
+                           type="xs:string"/>
+               <xs:element minOccurs="0" name="serviceId" nillable="true" type="ax2413:EntityIdentifier"/>
+            </xs:sequence>
+         </xs:complexType>
+      </xs:schema>
+   </wsdl:types>
+   <wsdl:message name="getServiceRequest">
+      <wsdl:part name="parameters" element="ns:getService"/>
+   </wsdl:message>
+   <wsdl:message name="getServiceResponse">
+      <wsdl:part name="parameters" element="ns:getServiceResponse"/>
+   </wsdl:message>
+   <wsdl:message name="AdminException">
+      <wsdl:part name="parameters" element="ns:AdminException"/>
+   </wsdl:message>
+   <wsdl:message name="setWiresRequest">
+      <wsdl:part name="parameters" element="ns:setWires"/>
+   </wsdl:message>
+   <wsdl:message name="setWiresResponse">
+      <wsdl:part name="parameters" element="ns:setWiresResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getServiceDescsRequest">
+      <wsdl:part name="parameters" element="ns:getServiceDescs"/>
+   </wsdl:message>
+   <wsdl:message name="getServiceDescsResponse">
+      <wsdl:part name="parameters" element="ns:getServiceDescsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getEnvEndPointsRequest">
+      <wsdl:part name="parameters" element="ns:getEnvEndPoints"/>
+   </wsdl:message>
+   <wsdl:message name="getEnvEndPointsResponse">
+      <wsdl:part name="parameters" element="ns:getEnvEndPointsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getOperationsForServiceRequest">
+      <wsdl:part name="parameters" element="ns:getOperationsForService"/>
+   </wsdl:message>
+   <wsdl:message name="getOperationsForServiceResponse">
+      <wsdl:part name="parameters" element="ns:getOperationsForServiceResponse"/>
+   </wsdl:message>
+   <wsdl:message name="renameEnvServiceRequest">
+      <wsdl:part name="parameters" element="ns:renameEnvService"/>
+   </wsdl:message>
+   <wsdl:message name="renameEnvServiceResponse">
+      <wsdl:part name="parameters" element="ns:renameEnvServiceResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getWiresToServiceByStateRequest">
+      <wsdl:part name="parameters" element="ns:getWiresToServiceByState"/>
+   </wsdl:message>
+   <wsdl:message name="getWiresToServiceByStateResponse">
+      <wsdl:part name="parameters" element="ns:getWiresToServiceByStateResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getWireTargetsRequest">
+      <wsdl:part name="parameters" element="ns:getWireTargets"/>
+   </wsdl:message>
+   <wsdl:message name="getWireTargetsResponse">
+      <wsdl:part name="parameters" element="ns:getWireTargetsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getWireSourcesRequest">
+      <wsdl:part name="parameters" element="ns:getWireSources"/>
+   </wsdl:message>
+   <wsdl:message name="getWireSourcesResponse">
+      <wsdl:part name="parameters" element="ns:getWireSourcesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getWiresToServiceRequest">
+      <wsdl:part name="parameters" element="ns:getWiresToService"/>
+   </wsdl:message>
+   <wsdl:message name="getWiresToServiceResponse">
+      <wsdl:part name="parameters" element="ns:getWiresToServiceResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getReferenceDescsRequest">
+      <wsdl:part name="parameters" element="ns:getReferenceDescs"/>
+   </wsdl:message>
+   <wsdl:message name="getReferenceDescsResponse">
+      <wsdl:part name="parameters" element="ns:getReferenceDescsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getServiceWsdlForBindingRequest">
+      <wsdl:part name="parameters" element="ns:getServiceWsdlForBinding"/>
+   </wsdl:message>
+   <wsdl:message name="getServiceWsdlForBindingResponse">
+      <wsdl:part name="parameters" element="ns:getServiceWsdlForBindingResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getServiceUrlForBindingRequest">
+      <wsdl:part name="parameters" element="ns:getServiceUrlForBinding"/>
+   </wsdl:message>
+   <wsdl:message name="getServiceUrlForBindingResponse">
+      <wsdl:part name="parameters" element="ns:getServiceUrlForBindingResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getAllCompatibleEnvReferenceNamesRequest">
+      <wsdl:part name="parameters" element="ns:getAllCompatibleEnvReferenceNames"/>
+   </wsdl:message>
+   <wsdl:message name="getAllCompatibleEnvReferenceNamesResponse">
+      <wsdl:part name="parameters" element="ns:getAllCompatibleEnvReferenceNamesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getReferenceWireRequest">
+      <wsdl:part name="parameters" element="ns:getReferenceWire"/>
+   </wsdl:message>
+   <wsdl:message name="getReferenceWireResponse">
+      <wsdl:part name="parameters" element="ns:getReferenceWireResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getEnvPromotedServiceSourceRequest">
+      <wsdl:part name="parameters" element="ns:getEnvPromotedServiceSource"/>
+   </wsdl:message>
+   <wsdl:message name="getEnvPromotedServiceSourceResponse">
+      <wsdl:part name="parameters" element="ns:getEnvPromotedServiceSourceResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getWireTargetsWithSameTypeRequest">
+      <wsdl:part name="parameters" element="ns:getWireTargetsWithSameType"/>
+   </wsdl:message>
+   <wsdl:message name="getWireTargetsWithSameTypeResponse">
+      <wsdl:part name="parameters" element="ns:getWireTargetsWithSameTypeResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getRealServicesRequest">
+      <wsdl:part name="parameters" element="ns:getRealServices"/>
+   </wsdl:message>
+   <wsdl:message name="getRealServicesResponse">
+      <wsdl:part name="parameters" element="ns:getRealServicesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getWiresToServicesRequest">
+      <wsdl:part name="parameters" element="ns:getWiresToServices"/>
+   </wsdl:message>
+   <wsdl:message name="getWiresToServicesResponse">
+      <wsdl:part name="parameters" element="ns:getWiresToServicesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="removeServicePromotedToEnvironmentRequest">
+      <wsdl:part name="parameters" element="ns:removeServicePromotedToEnvironment"/>
+   </wsdl:message>
+   <wsdl:message name="removeServicePromotedToEnvironmentResponse">
+      <wsdl:part name="parameters" element="ns:removeServicePromotedToEnvironmentResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getServiceWsdlForBindingWithHostNameRequest">
+      <wsdl:part name="parameters" element="ns:getServiceWsdlForBindingWithHostName"/>
+   </wsdl:message>
+   <wsdl:message name="getServiceWsdlForBindingWithHostNameResponse">
+      <wsdl:part name="parameters" element="ns:getServiceWsdlForBindingWithHostNameResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getOperationsForReferenceRequest">
+      <wsdl:part name="parameters" element="ns:getOperationsForReference"/>
+   </wsdl:message>
+   <wsdl:message name="getOperationsForReferenceResponse">
+      <wsdl:part name="parameters" element="ns:getOperationsForReferenceResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getReferenceConfigBindingDescRequest">
+      <wsdl:part name="parameters" element="ns:getReferenceConfigBindingDesc"/>
+   </wsdl:message>
+   <wsdl:message name="getReferenceConfigBindingDescResponse">
+      <wsdl:part name="parameters" element="ns:getReferenceConfigBindingDescResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getEnvWiresInRequest">
+      <wsdl:part name="parameters" element="ns:getEnvWiresIn"/>
+   </wsdl:message>
+   <wsdl:message name="getEnvWiresInResponse">
+      <wsdl:part name="parameters" element="ns:getEnvWiresInResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getReferenceRequest">
+      <wsdl:part name="parameters" element="ns:getReference"/>
+   </wsdl:message>
+   <wsdl:message name="getReferenceResponse">
+      <wsdl:part name="parameters" element="ns:getReferenceResponse"/>
+   </wsdl:message>
+   <wsdl:message name="setServicesPromotedToEnvironmentRequest">
+      <wsdl:part name="parameters" element="ns:setServicesPromotedToEnvironment"/>
+   </wsdl:message>
+   <wsdl:message name="setServicesPromotedToEnvironmentResponse">
+      <wsdl:part name="parameters" element="ns:setServicesPromotedToEnvironmentResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getNodesMappedToReferenceRequest">
+      <wsdl:part name="parameters" element="ns:getNodesMappedToReference"/>
+   </wsdl:message>
+   <wsdl:message name="getNodesMappedToReferenceResponse">
+      <wsdl:part name="parameters" element="ns:getNodesMappedToReferenceResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getWiresToServiceBindingRequest">
+      <wsdl:part name="parameters" element="ns:getWiresToServiceBinding"/>
+   </wsdl:message>
+   <wsdl:message name="getWiresToServiceBindingResponse">
+      <wsdl:part name="parameters" element="ns:getWiresToServiceBindingResponse"/>
+   </wsdl:message>
+   <wsdl:message name="setAllReferencesPromotedToEnvironmentRequest">
+      <wsdl:part name="parameters" element="ns:setAllReferencesPromotedToEnvironment"/>
+   </wsdl:message>
+   <wsdl:message name="setAllReferencesPromotedToEnvironmentResponse">
+      <wsdl:part name="parameters" element="ns:setAllReferencesPromotedToEnvironmentResponse"/>
+   </wsdl:message>
+   <wsdl:message name="setServicesToNodesRequest">
+      <wsdl:part name="parameters" element="ns:setServicesToNodes"/>
+   </wsdl:message>
+   <wsdl:message name="setServicesToNodesResponse">
+      <wsdl:part name="parameters" element="ns:setServicesToNodesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="setReferencePromotedToEnvironmentRequest">
+      <wsdl:part name="parameters" element="ns:setReferencePromotedToEnvironment"/>
+   </wsdl:message>
+   <wsdl:message name="setReferencePromotedToEnvironmentResponse">
+      <wsdl:part name="parameters" element="ns:setReferencePromotedToEnvironmentResponse"/>
+   </wsdl:message>
+   <wsdl:message name="deleteWiresRequest">
+      <wsdl:part name="parameters" element="ns:deleteWires"/>
+   </wsdl:message>
+   <wsdl:message name="deleteWiresResponse">
+      <wsdl:part name="parameters" element="ns:deleteWiresResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getEnvWireSourcesRequest">
+      <wsdl:part name="parameters" element="ns:getEnvWireSources"/>
+   </wsdl:message>
+   <wsdl:message name="getEnvWireSourcesResponse">
+      <wsdl:part name="parameters" element="ns:getEnvWireSourcesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getRealReferencesRequest">
+      <wsdl:part name="parameters" element="ns:getRealReferences"/>
+   </wsdl:message>
+   <wsdl:message name="getRealReferencesResponse">
+      <wsdl:part name="parameters" element="ns:getRealReferencesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getEnvWiresOutRequest">
+      <wsdl:part name="parameters" element="ns:getEnvWiresOut"/>
+   </wsdl:message>
+   <wsdl:message name="getEnvWiresOutResponse">
+      <wsdl:part name="parameters" element="ns:getEnvWiresOutResponse"/>
+   </wsdl:message>
+   <wsdl:message name="addServicePromotedToEnvironmentRequest">
+      <wsdl:part name="parameters" element="ns:addServicePromotedToEnvironment"/>
+   </wsdl:message>
+   <wsdl:message name="addServicePromotedToEnvironmentResponse">
+      <wsdl:part name="parameters" element="ns:addServicePromotedToEnvironmentResponse"/>
+   </wsdl:message>
+   <wsdl:message name="setAllServicesPromotedToEnvironmentRequest">
+      <wsdl:part name="parameters" element="ns:setAllServicesPromotedToEnvironment"/>
+   </wsdl:message>
+   <wsdl:message name="setAllServicesPromotedToEnvironmentResponse">
+      <wsdl:part name="parameters" element="ns:setAllServicesPromotedToEnvironmentResponse"/>
+   </wsdl:message>
+   <wsdl:message name="setReferencesToNodesRequest">
+      <wsdl:part name="parameters" element="ns:setReferencesToNodes"/>
+   </wsdl:message>
+   <wsdl:message name="setReferencesToNodesResponse">
+      <wsdl:part name="parameters" element="ns:setReferencesToNodesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="renameEnvReferenceRequest">
+      <wsdl:part name="parameters" element="ns:renameEnvReference"/>
+   </wsdl:message>
+   <wsdl:message name="renameEnvReferenceResponse">
+      <wsdl:part name="parameters" element="ns:renameEnvReferenceResponse"/>
+   </wsdl:message>
+   <wsdl:message name="deleteWireRequest">
+      <wsdl:part name="parameters" element="ns:deleteWire"/>
+   </wsdl:message>
+   <wsdl:message name="deleteWireResponse">
+      <wsdl:part name="parameters" element="ns:deleteWireResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getNodesMappedToServiceRequest">
+      <wsdl:part name="parameters" element="ns:getNodesMappedToService"/>
+   </wsdl:message>
+   <wsdl:message name="getNodesMappedToServiceResponse">
+      <wsdl:part name="parameters" element="ns:getNodesMappedToServiceResponse"/>
+   </wsdl:message>
+   <wsdl:portType name="EndpointServicePortType">
+      <wsdl:operation name="getService">
+         <wsdl:input message="ns:getServiceRequest" wsaw:Action="urn:getService"/>
+         <wsdl:output message="ns:getServiceResponse" wsaw:Action="urn:getServiceResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getServiceAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="setWires">
+         <wsdl:input message="ns:setWiresRequest" wsaw:Action="urn:setWires"/>
+         <wsdl:output message="ns:setWiresResponse" wsaw:Action="urn:setWiresResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:setWiresAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceDescs">
+         <wsdl:input message="ns:getServiceDescsRequest" wsaw:Action="urn:getServiceDescs"/>
+         <wsdl:output message="ns:getServiceDescsResponse" wsaw:Action="urn:getServiceDescsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getServiceDescsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvEndPoints">
+         <wsdl:input message="ns:getEnvEndPointsRequest" wsaw:Action="urn:getEnvEndPoints"/>
+         <wsdl:output message="ns:getEnvEndPointsResponse" wsaw:Action="urn:getEnvEndPointsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getEnvEndPointsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getOperationsForService">
+         <wsdl:input message="ns:getOperationsForServiceRequest"
+                     wsaw:Action="urn:getOperationsForService"/>
+         <wsdl:output message="ns:getOperationsForServiceResponse"
+                      wsaw:Action="urn:getOperationsForServiceResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getOperationsForServiceAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="renameEnvService">
+         <wsdl:input message="ns:renameEnvServiceRequest" wsaw:Action="urn:renameEnvService"/>
+         <wsdl:output message="ns:renameEnvServiceResponse"
+                      wsaw:Action="urn:renameEnvServiceResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:renameEnvServiceAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getWiresToServiceByState">
+         <wsdl:input message="ns:getWiresToServiceByStateRequest"
+                     wsaw:Action="urn:getWiresToServiceByState"/>
+         <wsdl:output message="ns:getWiresToServiceByStateResponse"
+                      wsaw:Action="urn:getWiresToServiceByStateResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getWiresToServiceByStateAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getWireTargets">
+         <wsdl:input message="ns:getWireTargetsRequest" wsaw:Action="urn:getWireTargets"/>
+         <wsdl:output message="ns:getWireTargetsResponse" wsaw:Action="urn:getWireTargetsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getWireTargetsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getWireSources">
+         <wsdl:input message="ns:getWireSourcesRequest" wsaw:Action="urn:getWireSources"/>
+         <wsdl:output message="ns:getWireSourcesResponse" wsaw:Action="urn:getWireSourcesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getWireSourcesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getWiresToService">
+         <wsdl:input message="ns:getWiresToServiceRequest" wsaw:Action="urn:getWiresToService"/>
+         <wsdl:output message="ns:getWiresToServiceResponse"
+                      wsaw:Action="urn:getWiresToServiceResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getWiresToServiceAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getReferenceDescs">
+         <wsdl:input message="ns:getReferenceDescsRequest" wsaw:Action="urn:getReferenceDescs"/>
+         <wsdl:output message="ns:getReferenceDescsResponse"
+                      wsaw:Action="urn:getReferenceDescsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getReferenceDescsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceWsdlForBinding">
+         <wsdl:input message="ns:getServiceWsdlForBindingRequest"
+                     wsaw:Action="urn:getServiceWsdlForBinding"/>
+         <wsdl:output message="ns:getServiceWsdlForBindingResponse"
+                      wsaw:Action="urn:getServiceWsdlForBindingResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getServiceWsdlForBindingAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceUrlForBinding">
+         <wsdl:input message="ns:getServiceUrlForBindingRequest"
+                     wsaw:Action="urn:getServiceUrlForBinding"/>
+         <wsdl:output message="ns:getServiceUrlForBindingResponse"
+                      wsaw:Action="urn:getServiceUrlForBindingResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getServiceUrlForBindingAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getAllCompatibleEnvReferenceNames">
+         <wsdl:input message="ns:getAllCompatibleEnvReferenceNamesRequest"
+                     wsaw:Action="urn:getAllCompatibleEnvReferenceNames"/>
+         <wsdl:output message="ns:getAllCompatibleEnvReferenceNamesResponse"
+                      wsaw:Action="urn:getAllCompatibleEnvReferenceNamesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getAllCompatibleEnvReferenceNamesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getReferenceWire">
+         <wsdl:input message="ns:getReferenceWireRequest" wsaw:Action="urn:getReferenceWire"/>
+         <wsdl:output message="ns:getReferenceWireResponse"
+                      wsaw:Action="urn:getReferenceWireResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getReferenceWireAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvPromotedServiceSource">
+         <wsdl:input message="ns:getEnvPromotedServiceSourceRequest"
+                     wsaw:Action="urn:getEnvPromotedServiceSource"/>
+         <wsdl:output message="ns:getEnvPromotedServiceSourceResponse"
+                      wsaw:Action="urn:getEnvPromotedServiceSourceResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getEnvPromotedServiceSourceAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getWireTargetsWithSameType">
+         <wsdl:input message="ns:getWireTargetsWithSameTypeRequest"
+                     wsaw:Action="urn:getWireTargetsWithSameType"/>
+         <wsdl:output message="ns:getWireTargetsWithSameTypeResponse"
+                      wsaw:Action="urn:getWireTargetsWithSameTypeResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getWireTargetsWithSameTypeAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getRealServices">
+         <wsdl:input message="ns:getRealServicesRequest" wsaw:Action="urn:getRealServices"/>
+         <wsdl:output message="ns:getRealServicesResponse" wsaw:Action="urn:getRealServicesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getRealServicesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getWiresToServices">
+         <wsdl:input message="ns:getWiresToServicesRequest" wsaw:Action="urn:getWiresToServices"/>
+         <wsdl:output message="ns:getWiresToServicesResponse"
+                      wsaw:Action="urn:getWiresToServicesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getWiresToServicesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="removeServicePromotedToEnvironment">
+         <wsdl:input message="ns:removeServicePromotedToEnvironmentRequest"
+                     wsaw:Action="urn:removeServicePromotedToEnvironment"/>
+         <wsdl:output message="ns:removeServicePromotedToEnvironmentResponse"
+                      wsaw:Action="urn:removeServicePromotedToEnvironmentResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:removeServicePromotedToEnvironmentAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceWsdlForBindingWithHostName">
+         <wsdl:input message="ns:getServiceWsdlForBindingWithHostNameRequest"
+                     wsaw:Action="urn:getServiceWsdlForBindingWithHostName"/>
+         <wsdl:output message="ns:getServiceWsdlForBindingWithHostNameResponse"
+                      wsaw:Action="urn:getServiceWsdlForBindingWithHostNameResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getServiceWsdlForBindingWithHostNameAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getOperationsForReference">
+         <wsdl:input message="ns:getOperationsForReferenceRequest"
+                     wsaw:Action="urn:getOperationsForReference"/>
+         <wsdl:output message="ns:getOperationsForReferenceResponse"
+                      wsaw:Action="urn:getOperationsForReferenceResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getOperationsForReferenceAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getReferenceConfigBindingDesc">
+         <wsdl:input message="ns:getReferenceConfigBindingDescRequest"
+                     wsaw:Action="urn:getReferenceConfigBindingDesc"/>
+         <wsdl:output message="ns:getReferenceConfigBindingDescResponse"
+                      wsaw:Action="urn:getReferenceConfigBindingDescResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getReferenceConfigBindingDescAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvWiresIn">
+         <wsdl:input message="ns:getEnvWiresInRequest" wsaw:Action="urn:getEnvWiresIn"/>
+         <wsdl:output message="ns:getEnvWiresInResponse" wsaw:Action="urn:getEnvWiresInResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getEnvWiresInAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getReference">
+         <wsdl:input message="ns:getReferenceRequest" wsaw:Action="urn:getReference"/>
+         <wsdl:output message="ns:getReferenceResponse" wsaw:Action="urn:getReferenceResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getReferenceAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="setServicesPromotedToEnvironment">
+         <wsdl:input message="ns:setServicesPromotedToEnvironmentRequest"
+                     wsaw:Action="urn:setServicesPromotedToEnvironment"/>
+         <wsdl:output message="ns:setServicesPromotedToEnvironmentResponse"
+                      wsaw:Action="urn:setServicesPromotedToEnvironmentResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:setServicesPromotedToEnvironmentAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getNodesMappedToReference">
+         <wsdl:input message="ns:getNodesMappedToReferenceRequest"
+                     wsaw:Action="urn:getNodesMappedToReference"/>
+         <wsdl:output message="ns:getNodesMappedToReferenceResponse"
+                      wsaw:Action="urn:getNodesMappedToReferenceResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getNodesMappedToReferenceAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getWiresToServiceBinding">
+         <wsdl:input message="ns:getWiresToServiceBindingRequest"
+                     wsaw:Action="urn:getWiresToServiceBinding"/>
+         <wsdl:output message="ns:getWiresToServiceBindingResponse"
+                      wsaw:Action="urn:getWiresToServiceBindingResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getWiresToServiceBindingAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="setAllReferencesPromotedToEnvironment">
+         <wsdl:input message="ns:setAllReferencesPromotedToEnvironmentRequest"
+                     wsaw:Action="urn:setAllReferencesPromotedToEnvironment"/>
+         <wsdl:output message="ns:setAllReferencesPromotedToEnvironmentResponse"
+                      wsaw:Action="urn:setAllReferencesPromotedToEnvironmentResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:setAllReferencesPromotedToEnvironmentAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="setServicesToNodes">
+         <wsdl:input message="ns:setServicesToNodesRequest" wsaw:Action="urn:setServicesToNodes"/>
+         <wsdl:output message="ns:setServicesToNodesResponse"
+                      wsaw:Action="urn:setServicesToNodesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:setServicesToNodesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="setReferencePromotedToEnvironment">
+         <wsdl:input message="ns:setReferencePromotedToEnvironmentRequest"
+                     wsaw:Action="urn:setReferencePromotedToEnvironment"/>
+         <wsdl:output message="ns:setReferencePromotedToEnvironmentResponse"
+                      wsaw:Action="urn:setReferencePromotedToEnvironmentResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:setReferencePromotedToEnvironmentAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="deleteWires">
+         <wsdl:input message="ns:deleteWiresRequest" wsaw:Action="urn:deleteWires"/>
+         <wsdl:output message="ns:deleteWiresResponse" wsaw:Action="urn:deleteWiresResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:deleteWiresAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvWireSources">
+         <wsdl:input message="ns:getEnvWireSourcesRequest" wsaw:Action="urn:getEnvWireSources"/>
+         <wsdl:output message="ns:getEnvWireSourcesResponse"
+                      wsaw:Action="urn:getEnvWireSourcesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getEnvWireSourcesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getRealReferences">
+         <wsdl:input message="ns:getRealReferencesRequest" wsaw:Action="urn:getRealReferences"/>
+         <wsdl:output message="ns:getRealReferencesResponse"
+                      wsaw:Action="urn:getRealReferencesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getRealReferencesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvWiresOut">
+         <wsdl:input message="ns:getEnvWiresOutRequest" wsaw:Action="urn:getEnvWiresOut"/>
+         <wsdl:output message="ns:getEnvWiresOutResponse" wsaw:Action="urn:getEnvWiresOutResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getEnvWiresOutAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="addServicePromotedToEnvironment">
+         <wsdl:input message="ns:addServicePromotedToEnvironmentRequest"
+                     wsaw:Action="urn:addServicePromotedToEnvironment"/>
+         <wsdl:output message="ns:addServicePromotedToEnvironmentResponse"
+                      wsaw:Action="urn:addServicePromotedToEnvironmentResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:addServicePromotedToEnvironmentAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="setAllServicesPromotedToEnvironment">
+         <wsdl:input message="ns:setAllServicesPromotedToEnvironmentRequest"
+                     wsaw:Action="urn:setAllServicesPromotedToEnvironment"/>
+         <wsdl:output message="ns:setAllServicesPromotedToEnvironmentResponse"
+                      wsaw:Action="urn:setAllServicesPromotedToEnvironmentResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:setAllServicesPromotedToEnvironmentAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="setReferencesToNodes">
+         <wsdl:input message="ns:setReferencesToNodesRequest" wsaw:Action="urn:setReferencesToNodes"/>
+         <wsdl:output message="ns:setReferencesToNodesResponse"
+                      wsaw:Action="urn:setReferencesToNodesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:setReferencesToNodesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="renameEnvReference">
+         <wsdl:input message="ns:renameEnvReferenceRequest" wsaw:Action="urn:renameEnvReference"/>
+         <wsdl:output message="ns:renameEnvReferenceResponse"
+                      wsaw:Action="urn:renameEnvReferenceResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:renameEnvReferenceAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="deleteWire">
+         <wsdl:input message="ns:deleteWireRequest" wsaw:Action="urn:deleteWire"/>
+         <wsdl:output message="ns:deleteWireResponse" wsaw:Action="urn:deleteWireResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:deleteWireAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getNodesMappedToService">
+         <wsdl:input message="ns:getNodesMappedToServiceRequest"
+                     wsaw:Action="urn:getNodesMappedToService"/>
+         <wsdl:output message="ns:getNodesMappedToServiceResponse"
+                      wsaw:Action="urn:getNodesMappedToServiceResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getNodesMappedToServiceAdminException"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="EndpointServiceSoap11Binding" type="ns:EndpointServicePortType">
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <wsdl:operation name="setWires">
+         <soap:operation soapAction="urn:setWires" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getService">
+         <soap:operation soapAction="urn:getService" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceDescs">
+         <soap:operation soapAction="urn:getServiceDescs" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getWiresToServiceByState">
+         <soap:operation soapAction="urn:getWiresToServiceByState" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvEndPoints">
+         <soap:operation soapAction="urn:getEnvEndPoints" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="renameEnvService">
+         <soap:operation soapAction="urn:renameEnvService" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getOperationsForService">
+         <soap:operation soapAction="urn:getOperationsForService" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getWireSources">
+         <soap:operation soapAction="urn:getWireSources" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getWiresToService">
+         <soap:operation soapAction="urn:getWiresToService" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getReferenceDescs">
+         <soap:operation soapAction="urn:getReferenceDescs" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getWireTargets">
+         <soap:operation soapAction="urn:getWireTargets" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceWsdlForBinding">
+         <soap:operation soapAction="urn:getServiceWsdlForBinding" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceUrlForBinding">
+         <soap:operation soapAction="urn:getServiceUrlForBinding" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getAllCompatibleEnvReferenceNames">
+         <soap:operation soapAction="urn:getAllCompatibleEnvReferenceNames" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getReferenceWire">
+         <soap:operation soapAction="urn:getReferenceWire" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvPromotedServiceSource">
+         <soap:operation soapAction="urn:getEnvPromotedServiceSource" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getRealServices">
+         <soap:operation soapAction="urn:getRealServices" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getWireTargetsWithSameType">
+         <soap:operation soapAction="urn:getWireTargetsWithSameType" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="removeServicePromotedToEnvironment">
+         <soap:operation soapAction="urn:removeServicePromotedToEnvironment" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getWiresToServices">
+         <soap:operation soapAction="urn:getWiresToServices" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceWsdlForBindingWithHostName">
+         <soap:operation soapAction="urn:getServiceWsdlForBindingWithHostName" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvWiresIn">
+         <soap:operation soapAction="urn:getEnvWiresIn" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getOperationsForReference">
+         <soap:operation soapAction="urn:getOperationsForReference" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getReferenceConfigBindingDesc">
+         <soap:operation soapAction="urn:getReferenceConfigBindingDesc" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getReference">
+         <soap:operation soapAction="urn:getReference" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setServicesPromotedToEnvironment">
+         <soap:operation soapAction="urn:setServicesPromotedToEnvironment" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getNodesMappedToReference">
+         <soap:operation soapAction="urn:getNodesMappedToReference" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getWiresToServiceBinding">
+         <soap:operation soapAction="urn:getWiresToServiceBinding" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setAllReferencesPromotedToEnvironment">
+         <soap:operation soapAction="urn:setAllReferencesPromotedToEnvironment" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setServicesToNodes">
+         <soap:operation soapAction="urn:setServicesToNodes" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="deleteWires">
+         <soap:operation soapAction="urn:deleteWires" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setReferencePromotedToEnvironment">
+         <soap:operation soapAction="urn:setReferencePromotedToEnvironment" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvWireSources">
+         <soap:operation soapAction="urn:getEnvWireSources" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setAllServicesPromotedToEnvironment">
+         <soap:operation soapAction="urn:setAllServicesPromotedToEnvironment" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="addServicePromotedToEnvironment">
+         <soap:operation soapAction="urn:addServicePromotedToEnvironment" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getRealReferences">
+         <soap:operation soapAction="urn:getRealReferences" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvWiresOut">
+         <soap:operation soapAction="urn:getEnvWiresOut" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setReferencesToNodes">
+         <soap:operation soapAction="urn:setReferencesToNodes" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="renameEnvReference">
+         <soap:operation soapAction="urn:renameEnvReference" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getNodesMappedToService">
+         <soap:operation soapAction="urn:getNodesMappedToService" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="deleteWire">
+         <soap:operation soapAction="urn:deleteWire" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="EndpointServiceSoap12Binding" type="ns:EndpointServicePortType">
+      <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <wsdl:operation name="setWires">
+         <soap12:operation soapAction="urn:setWires" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getService">
+         <soap12:operation soapAction="urn:getService" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceDescs">
+         <soap12:operation soapAction="urn:getServiceDescs" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getWiresToServiceByState">
+         <soap12:operation soapAction="urn:getWiresToServiceByState" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvEndPoints">
+         <soap12:operation soapAction="urn:getEnvEndPoints" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="renameEnvService">
+         <soap12:operation soapAction="urn:renameEnvService" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getOperationsForService">
+         <soap12:operation soapAction="urn:getOperationsForService" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getWireSources">
+         <soap12:operation soapAction="urn:getWireSources" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getWiresToService">
+         <soap12:operation soapAction="urn:getWiresToService" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getReferenceDescs">
+         <soap12:operation soapAction="urn:getReferenceDescs" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getWireTargets">
+         <soap12:operation soapAction="urn:getWireTargets" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceWsdlForBinding">
+         <soap12:operation soapAction="urn:getServiceWsdlForBinding" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceUrlForBinding">
+         <soap12:operation soapAction="urn:getServiceUrlForBinding" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getAllCompatibleEnvReferenceNames">
+         <soap12:operation soapAction="urn:getAllCompatibleEnvReferenceNames" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getReferenceWire">
+         <soap12:operation soapAction="urn:getReferenceWire" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvPromotedServiceSource">
+         <soap12:operation soapAction="urn:getEnvPromotedServiceSource" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getRealServices">
+         <soap12:operation soapAction="urn:getRealServices" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getWireTargetsWithSameType">
+         <soap12:operation soapAction="urn:getWireTargetsWithSameType" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="removeServicePromotedToEnvironment">
+         <soap12:operation soapAction="urn:removeServicePromotedToEnvironment" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getWiresToServices">
+         <soap12:operation soapAction="urn:getWiresToServices" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceWsdlForBindingWithHostName">
+         <soap12:operation soapAction="urn:getServiceWsdlForBindingWithHostName" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvWiresIn">
+         <soap12:operation soapAction="urn:getEnvWiresIn" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getOperationsForReference">
+         <soap12:operation soapAction="urn:getOperationsForReference" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getReferenceConfigBindingDesc">
+         <soap12:operation soapAction="urn:getReferenceConfigBindingDesc" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getReference">
+         <soap12:operation soapAction="urn:getReference" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setServicesPromotedToEnvironment">
+         <soap12:operation soapAction="urn:setServicesPromotedToEnvironment" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getNodesMappedToReference">
+         <soap12:operation soapAction="urn:getNodesMappedToReference" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getWiresToServiceBinding">
+         <soap12:operation soapAction="urn:getWiresToServiceBinding" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setAllReferencesPromotedToEnvironment">
+         <soap12:operation soapAction="urn:setAllReferencesPromotedToEnvironment" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setServicesToNodes">
+         <soap12:operation soapAction="urn:setServicesToNodes" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="deleteWires">
+         <soap12:operation soapAction="urn:deleteWires" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setReferencePromotedToEnvironment">
+         <soap12:operation soapAction="urn:setReferencePromotedToEnvironment" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvWireSources">
+         <soap12:operation soapAction="urn:getEnvWireSources" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setAllServicesPromotedToEnvironment">
+         <soap12:operation soapAction="urn:setAllServicesPromotedToEnvironment" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="addServicePromotedToEnvironment">
+         <soap12:operation soapAction="urn:addServicePromotedToEnvironment" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getRealReferences">
+         <soap12:operation soapAction="urn:getRealReferences" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvWiresOut">
+         <soap12:operation soapAction="urn:getEnvWiresOut" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setReferencesToNodes">
+         <soap12:operation soapAction="urn:setReferencesToNodes" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="renameEnvReference">
+         <soap12:operation soapAction="urn:renameEnvReference" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getNodesMappedToService">
+         <soap12:operation soapAction="urn:getNodesMappedToService" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="deleteWire">
+         <soap12:operation soapAction="urn:deleteWire" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="EndpointServiceHttpBinding" type="ns:EndpointServicePortType">
+      <http:binding verb="POST"/>
+      <wsdl:operation name="setWires">
+         <http:operation location="EndpointService/setWires"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="setWires"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="setWires"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getService">
+         <http:operation location="EndpointService/getService"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getService"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getService"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceDescs">
+         <http:operation location="EndpointService/getServiceDescs"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getServiceDescs"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getServiceDescs"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getWiresToServiceByState">
+         <http:operation location="EndpointService/getWiresToServiceByState"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getWiresToServiceByState"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getWiresToServiceByState"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvEndPoints">
+         <http:operation location="EndpointService/getEnvEndPoints"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getEnvEndPoints"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getEnvEndPoints"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="renameEnvService">
+         <http:operation location="EndpointService/renameEnvService"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="renameEnvService"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="renameEnvService"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getOperationsForService">
+         <http:operation location="EndpointService/getOperationsForService"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getOperationsForService"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getOperationsForService"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getWireSources">
+         <http:operation location="EndpointService/getWireSources"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getWireSources"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getWireSources"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getWiresToService">
+         <http:operation location="EndpointService/getWiresToService"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getWiresToService"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getWiresToService"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getReferenceDescs">
+         <http:operation location="EndpointService/getReferenceDescs"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getReferenceDescs"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getReferenceDescs"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getWireTargets">
+         <http:operation location="EndpointService/getWireTargets"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getWireTargets"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getWireTargets"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceWsdlForBinding">
+         <http:operation location="EndpointService/getServiceWsdlForBinding"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getServiceWsdlForBinding"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getServiceWsdlForBinding"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceUrlForBinding">
+         <http:operation location="EndpointService/getServiceUrlForBinding"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getServiceUrlForBinding"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getServiceUrlForBinding"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getAllCompatibleEnvReferenceNames">
+         <http:operation location="EndpointService/getAllCompatibleEnvReferenceNames"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getAllCompatibleEnvReferenceNames"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getAllCompatibleEnvReferenceNames"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getReferenceWire">
+         <http:operation location="EndpointService/getReferenceWire"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getReferenceWire"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getReferenceWire"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvPromotedServiceSource">
+         <http:operation location="EndpointService/getEnvPromotedServiceSource"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getEnvPromotedServiceSource"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getEnvPromotedServiceSource"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getRealServices">
+         <http:operation location="EndpointService/getRealServices"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getRealServices"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getRealServices"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getWireTargetsWithSameType">
+         <http:operation location="EndpointService/getWireTargetsWithSameType"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getWireTargetsWithSameType"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getWireTargetsWithSameType"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="removeServicePromotedToEnvironment">
+         <http:operation location="EndpointService/removeServicePromotedToEnvironment"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="removeServicePromotedToEnvironment"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="removeServicePromotedToEnvironment"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getWiresToServices">
+         <http:operation location="EndpointService/getWiresToServices"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getWiresToServices"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getWiresToServices"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceWsdlForBindingWithHostName">
+         <http:operation location="EndpointService/getServiceWsdlForBindingWithHostName"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getServiceWsdlForBindingWithHostName"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getServiceWsdlForBindingWithHostName"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvWiresIn">
+         <http:operation location="EndpointService/getEnvWiresIn"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getEnvWiresIn"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getEnvWiresIn"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getOperationsForReference">
+         <http:operation location="EndpointService/getOperationsForReference"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getOperationsForReference"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getOperationsForReference"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getReferenceConfigBindingDesc">
+         <http:operation location="EndpointService/getReferenceConfigBindingDesc"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getReferenceConfigBindingDesc"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getReferenceConfigBindingDesc"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getReference">
+         <http:operation location="EndpointService/getReference"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getReference"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getReference"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="setServicesPromotedToEnvironment">
+         <http:operation location="EndpointService/setServicesPromotedToEnvironment"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="setServicesPromotedToEnvironment"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="setServicesPromotedToEnvironment"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getNodesMappedToReference">
+         <http:operation location="EndpointService/getNodesMappedToReference"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getNodesMappedToReference"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getNodesMappedToReference"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getWiresToServiceBinding">
+         <http:operation location="EndpointService/getWiresToServiceBinding"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getWiresToServiceBinding"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getWiresToServiceBinding"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="setAllReferencesPromotedToEnvironment">
+         <http:operation location="EndpointService/setAllReferencesPromotedToEnvironment"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="setAllReferencesPromotedToEnvironment"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="setAllReferencesPromotedToEnvironment"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="setServicesToNodes">
+         <http:operation location="EndpointService/setServicesToNodes"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="setServicesToNodes"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="setServicesToNodes"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="deleteWires">
+         <http:operation location="EndpointService/deleteWires"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="deleteWires"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="deleteWires"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="setReferencePromotedToEnvironment">
+         <http:operation location="EndpointService/setReferencePromotedToEnvironment"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="setReferencePromotedToEnvironment"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="setReferencePromotedToEnvironment"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvWireSources">
+         <http:operation location="EndpointService/getEnvWireSources"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getEnvWireSources"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getEnvWireSources"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="setAllServicesPromotedToEnvironment">
+         <http:operation location="EndpointService/setAllServicesPromotedToEnvironment"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="setAllServicesPromotedToEnvironment"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="setAllServicesPromotedToEnvironment"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="addServicePromotedToEnvironment">
+         <http:operation location="EndpointService/addServicePromotedToEnvironment"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="addServicePromotedToEnvironment"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="addServicePromotedToEnvironment"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getRealReferences">
+         <http:operation location="EndpointService/getRealReferences"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getRealReferences"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getRealReferences"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvWiresOut">
+         <http:operation location="EndpointService/getEnvWiresOut"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getEnvWiresOut"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getEnvWiresOut"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="setReferencesToNodes">
+         <http:operation location="EndpointService/setReferencesToNodes"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="setReferencesToNodes"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="setReferencesToNodes"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="renameEnvReference">
+         <http:operation location="EndpointService/renameEnvReference"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="renameEnvReference"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="renameEnvReference"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getNodesMappedToService">
+         <http:operation location="EndpointService/getNodesMappedToService"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getNodesMappedToService"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getNodesMappedToService"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="deleteWire">
+         <http:operation location="EndpointService/deleteWire"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="deleteWire"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="deleteWire"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:service name="EndpointService">
+      <wsdl:port name="EndpointServiceHttpSoap11Endpoint"
+                 binding="ns:EndpointServiceSoap11Binding">
+         <soap:address location="http://10.238.233.141:8120/amxadministrator/services/EndpointService.EndpointServiceHttpSoap11Endpoint/"/>
+      </wsdl:port>
+      <wsdl:port name="EndpointServiceHttpSoap12Endpoint"
+                 binding="ns:EndpointServiceSoap12Binding">
+         <soap12:address location="http://10.238.233.141:8120/amxadministrator/services/EndpointService.EndpointServiceHttpSoap12Endpoint/"/>
+      </wsdl:port>
+      <wsdl:port name="EndpointServiceHttpEndpoint" binding="ns:EndpointServiceHttpBinding">
+         <http:address location="http://10.238.233.141:8120/amxadministrator/services/EndpointService.EndpointServiceHttpEndpoint/"/>
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,149 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" mlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<groupId>it.bnl.tibco</groupId>
+<artifactId>mvn-amx-env-client</artifactId>
+<version>1.0.0</version>
+<packaging>bundle</packaging>
+<name>mvn environment amx client</name>
+
+    <profiles>
+        <profile>
+            <id>clover</id>
+            <activation>
+                <property>
+                    <name>clover</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.atlassian.maven.plugins</groupId>
+                        <artifactId>maven-clover2-plugin</artifactId>
+                        <configuration>
+                            <licenseLocation><!--TO DO--></licenseLocation>
+                            <targetPercentage>60%</targetPercentage>
+                            <generateHtml>false</generateHtml>
+                            <generatePdf>false</generatePdf>
+                            <generateXml>true</generateXml>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>aggregate</goal>
+                                    <goal>instrument</goal>
+                                    <goal>clover</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+	    <repositories>
+        <repository>
+            <id>wso2-nexus</id>
+            <name>WSO2 internal Repository</name>
+            <url>http://maven.wso2.org/nexus/content/groups/wso2-public/</url>
+            <releases>
+            <enabled>true</enabled>
+            <updatePolicy>daily</updatePolicy>
+            <checksumPolicy>ignore</checksumPolicy>
+            </releases>
+        </repository>
+    </repositories>
+<build>
+    <plugins>
+	<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.18.1</version>
+        <configuration>
+          <skipTests>true</skipTests>
+        </configuration>
+      </plugin>
+        <!-- Generates JAVA source files from the WSDL -->
+        <plugin>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-wsdl2code-maven-plugin</artifactId>
+            <version>1.6.2</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>wsdl2code</goal>
+                    </goals>
+                    <configuration>
+                        <packageName>com.tibco.client.env</packageName>
+                        <wsdlFile>EnvService.wsdl</wsdlFile><!-- TODO: Update this file with new WSDL versions -->
+						<databindingName>adb</databindingName>
+						<syncMode>sync</syncMode>
+						<unwrap>true</unwrap>
+						<unpackClasses>true</unpackClasses>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+        <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                <encoding>UTF-8</encoding>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Bundle-Name>${project.artifactId}</Bundle-Name>
+                        <Export-Package>
+							com.tibco.client.env;version="1.0.0"				
+                        </Export-Package>
+                         <Import-Package>
+                         	javax.xml.namespace; version="1.2.11.wso2v6"; resolution:=optional,
+                            javax.xml.stream; version="1.2.11.wso2v6"; resolution:=optional,
+                            org.apache.axiom.om; version="1.2.11.wso2v6"; resolution:=optional,
+                            org.apache.axiom.soap; version="1.2.11.wso2v6"; resolution:=optional,
+                            org.apache.axis2; version="1.6.1.wso2v14"; resolution:=optional,
+                            org.apache.axis2.addressing; version="1.6.1.wso2v14"; resolution:=optional,
+                            org.apache.axis2.client ;version="1.6.1.wso2v14"; resolution:=optional,
+                            org.apache.axis2.client.async; version="1.6.1.wso2v14"; resolution:=optional,
+                            org.apache.axis2.context; version="1.6.1.wso2v14"; resolution:=optional,
+                            org.apache.axis2.databinding; version="1.6.1.wso2v14"; resolution:=optional,
+ 							org.apache.axis2.databinding.utils; version="1.6.1.wso2v14"; resolution:=optional,
+ 							org.apache.axis2.databinding.utils.reader; version="1.6.1.wso2v14"; resolution:=optional,
+ 							org.apache.axis2.description; version="1.6.1.wso2v14"; resolution:=optional,
+ 							org.apache.axis2.engine; version="1.6.1.wso2v14"; resolution:=optional,
+ 							org.apache.axis2.transport; version="1.6.1.wso2v14"; resolution:=optional,
+ 							org.apache.axis2.util; version="1.6.1.wso2v14"; resolution:=optional
+                        </Import-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+    </plugins>
+</build>
+
+<dependencies>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>maven-bundle-plugin</artifactId>
+			<version>2.5.4</version>
+		</dependency>
+        <dependency>
+            <groupId>org.apache.axis2.wso2</groupId>
+            <artifactId>axis2</artifactId>
+            <version>1.6.1.wso2v14</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.ws.commons.axiom.wso2</groupId>
+            <artifactId>axiom</artifactId>
+            <version>1.2.11.wso2v6</version>
+        </dependency>
+        <dependency>
+            <groupId>wsdl4j.wso2</groupId>
+            <artifactId>wsdl4j</artifactId>
+            <version>1.6.2.wso2v4</version>
+        </dependency>
+</dependencies>
+<properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+</project>

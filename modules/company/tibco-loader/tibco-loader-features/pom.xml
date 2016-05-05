@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>it.company.wso2.registry.integrations.tibco</groupId>
+    <artifactId>tibco-loader</artifactId>
+    <version>1.0</version>
+	<relativePath>../pom.xml</relativePath>
+  </parent>
+  <groupId>it.company.wso2.registry.integrations.tibco</groupId>
+  <artifactId>TibcoManager.features</artifactId>
+  <version>1.0.0</version>
+  <name>Tibco Manager aggregate features</name>
+  <url>http://maven.apache.org</url>
+  <packaging>pom</packaging>
+  
+     <dependencies>
+        <dependency>
+            <groupId>it.company.wso2.registry.integrations.tibco</groupId>
+            <artifactId>TibcoManager.server.feature</artifactId>
+            <version>1.0.0</version>
+			<type>zip</type>
+        </dependency>
+    </dependencies>
+  
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.wso2.maven</groupId>
+                <artifactId>carbon-p2-plugin</artifactId>
+                <version>1.5.6</version>
+                <executions>
+                    <execution>
+                        <id>p2-feature-generation</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>p2-feature-gen</goal>
+                        </goals>
+                        <configuration>
+                            <id>TibcoManager.features</id>
+                            <propertiesFile>../feature.properties</propertiesFile>
+                            <adviceFile>
+                                <properties>
+                                    <propertyDef>org.eclipse.equinox.p2.type.group:true</propertyDef>
+                                </properties>
+                            </adviceFile>
+                            <includedFeatures>
+                                <includedFeatureDef>it.company.wso2.registry.integrations.tibco:TibcoManager.server.feature:1.0.0</includedFeatureDef>
+                            </includedFeatures>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>clean_target</id>
+                        <phase>install</phase>
+                        <configuration>
+                            <tasks>
+                                <delete dir="src/main/resources"/>
+                                <delete dir="src/main"/>
+                                <delete dir="src"/>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+  <!--modules>
+    <module>TibcoManager.server.feature</module>
+    <module>TibcoManager.mgt.feature</module>
+  </modules-->
+</project>

@@ -1,0 +1,2604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:ns="http://binding.amx.api.admin.amf.tibco.com"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:ns1="http://org.apache.axis2/xsd"
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+                  xmlns:ax2690="http://nodetemplate.amx.api.admin.amf.tibco.com/xsd"
+                  xmlns:ax2680="http://fixer.core.api.admin.amf.tibco.com/xsd"
+                  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+                  xmlns:ax2694="http://component.amx.api.admin.amf.tibco.com/xsd"
+                  xmlns:ax2683="http://types.core.api.admin.amf.tibco.com/xsd"
+                  xmlns:ax2685="http://application.amx.api.admin.amf.tibco.com/xsd"
+                  xmlns:ax2697="http://endpoint.amx.api.admin.amf.tibco.com/xsd"
+                  xmlns:ax2688="http://binding.amx.api.admin.amf.tibco.com/xsd"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:ax2678="http://exception.core.api.admin.amf.tibco.com/xsd"
+                  xmlns:ax2703="http://logging.amx.api.admin.amf.tibco.com/xsd"
+                  targetNamespace="http://binding.amx.api.admin.amf.tibco.com">
+   <wsdl:documentation>BindingService</wsdl:documentation>
+   <wsdl:types>
+      <xs:schema xmlns:ax2681="http://fixer.core.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax2679="http://binding.amx.api.admin.amf.tibco.com"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://exception.core.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://binding.amx.api.admin.amf.tibco.com"/>
+         <xs:import namespace="http://fixer.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="AdminException">
+            <xs:complexContent>
+               <xs:extension base="ax2679:Exception">
+                  <xs:sequence>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="faultDetails" nillable="true"
+                                 type="ax2678:AdminFaultDetail"/>
+                     <xs:element minOccurs="0" name="summary" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="AdminFaultDetail">
+            <xs:sequence>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="causes" nillable="true"
+                           type="xs:string"/>
+               <xs:element minOccurs="0" name="detail" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="exception" nillable="true" type="xs:anyType"/>
+               <xs:element minOccurs="0" name="field" nillable="true" type="xs:string"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="fixerHolders" nillable="true"
+                           type="ax2681:FixerHolder"/>
+               <xs:element minOccurs="0" name="severity" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax2691="http://nodetemplate.amx.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax2692="http://application.amx.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax2696="http://component.amx.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax2689="http://types.core.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax2700="http://endpoint.amx.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://binding.amx.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://types.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://nodetemplate.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://application.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://component.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://endpoint.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="RequirementsDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2689:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="importPackages" nillable="true"
+                                 type="ax2691:FeatureTemplateDesc"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="includedResources" nillable="true"
+                                 type="xs:string"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="requiredBundles" nillable="true"
+                                 type="ax2691:FeatureTemplateDesc"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="requiredCapabilities" nillable="true"
+                                 type="ax2688:RequiredCapabilityDesc"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="requiredFeatures" nillable="true"
+                                 type="ax2691:FeatureTemplateDesc"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="RequiredCapabilityDesc">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="type" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="version" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="BindingDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2688:RequirementsDesc">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="bindingType" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="configuration" nillable="true" type="xs:base64Binary"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="properties" nillable="true"
+                                 type="ax2685:PropertyDesc"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="svarsUsed" nillable="true"
+                                 type="xs:string"/>
+                     <xs:element minOccurs="0" name="transportType" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="wireUri" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="BindingCreateDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2688:BindingDesc">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="type" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="BindingSummaryDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2689:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="actionStatus" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="runtimeState" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="syncState" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="type" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="typeDisplayName" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="wired" type="xs:boolean"/>
+                     <xs:element minOccurs="0" name="wsdlGenerationSupported" type="xs:boolean"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="BindingSummaryWithNodeMappingDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2688:BindingSummaryDesc">
+                  <xs:sequence>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="nodeMappings" nillable="true"
+                                 type="ax2696:NodeMappingDesc"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="BindingTypeDesc">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="type" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="typeDescription" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="typeDisplayName" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="EndpointDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2689:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="bindingId" nillable="true" type="ax2689:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="bindingUri" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="direction" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="endpointType" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="endpointUri" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="nodeId" nillable="true" type="ax2689:EntityIdentifier"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="ReferenceBindingSummaryDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2688:BindingSummaryDesc">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="wireDesc" nillable="true" type="ax2700:WireTargetDesc"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="ServiceBindingDesc">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="bindingId" nillable="true" type="ax2689:EntityIdentifier"/>
+               <xs:element minOccurs="0" name="deployed" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="serviceId" nillable="true" type="ax2689:EntityIdentifier"/>
+            </xs:sequence>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax2686="http://types.core.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://application.amx.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://types.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="PropertyDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2686:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="mustSupply" type="xs:boolean"/>
+                     <xs:element minOccurs="0" name="ownerType" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="source" nillable="true" type="ax2686:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="targetType" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="type" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="typeDisplayName" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="value" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="NodeIdentifier">
+            <xs:complexContent>
+               <xs:extension base="ax2686:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="host" nillable="true" type="ax2686:EntityIdentifier"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax2704="http://types.core.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://logging.amx.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://types.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="LoggerDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2683:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="additivity" type="xs:boolean"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="appenders" nillable="true"
+                                 type="ax2703:AppenderDesc"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="AppenderDesc">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="appenderRef" nillable="true" type="ax2683:EntityIdentifier"/>
+               <xs:element minOccurs="0" name="effectiveLevel" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax2695="http://application.amx.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax2701="http://types.core.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://component.amx.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://application.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://types.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="NodeMappingDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2685:NodeIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="actionStatus" nillable="true" type="xs:string"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="outOfSyncDetail" nillable="true"
+                                 type="xs:string"/>
+                     <xs:element minOccurs="0" name="runtimeState" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="runtimeStateEnum" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="FactoryComponentAssociationDesc">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="applicationId" nillable="true"
+                           type="ax2701:EntityIdentifier"/>
+               <xs:element minOccurs="0" name="factoryComponentId" nillable="true"
+                           type="ax2701:PathedEntityIdentifier"/>
+               <xs:element minOccurs="0" name="nodeId" nillable="true" type="ax2701:EntityIdentifier"/>
+               <xs:element minOccurs="0" name="version" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax2705="http://logging.amx.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax2682="http://exception.core.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax2693="http://binding.amx.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax2684="http://types.core.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax2687="http://application.amx.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax2702="http://component.amx.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://binding.amx.api.admin.amf.tibco.com">
+         <xs:import namespace="http://exception.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://types.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://application.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://binding.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://component.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://logging.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="Exception">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="Exception" nillable="true" type="xs:anyType"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="AdminException">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="AdminException" nillable="true"
+                              type="ax2678:AdminException"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="isBindingMemberOfLogicalNode">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="isBindingMemberOfLogicalNodeResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getProperties">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getPropertiesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2687:PropertyDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getBinding">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getBindingResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" nillable="true" type="ax2688:BindingCreateDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getAllServiceBindings">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getAllServiceBindingsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2688:BindingSummaryDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getBindingsMappedToNode">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="ax2684:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param2" type="xs:boolean"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getBindingsMappedToNodeResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2688:BindingSummaryDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getAllServiceBindingsWithNodeMappings">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getAllServiceBindingsWithNodeMappingsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2688:BindingSummaryWithNodeMappingDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getBindingTypes">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getBindingTypesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2688:BindingTypeDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getBindingForEndpoint">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getBindingForEndpointResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" nillable="true" type="ax2688:EndpointDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getDeployedEndpointsForBindings">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getDeployedEndpointsForBindingsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2688:EndpointDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEndpointsForBindings">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEndpointsForBindingsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2688:EndpointDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getAllReferenceBindings">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getAllReferenceBindingsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2688:ReferenceBindingSummaryDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getAllEnvServiceBindings">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getAllEnvServiceBindingsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2688:ServiceBindingDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getFactoryComponentAssociations">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getFactoryComponentAssociationsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2702:FactoryComponentAssociationDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getNodesMappedToBinding">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getNodesMappedToBindingResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2702:NodeMappingDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getLoggingConfig">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getLoggingConfigResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2703:LoggerDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getOwningService">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getOwningServiceResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" nillable="true" type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="addBindingsToNodes">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="addBindingsToNodesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2684:MultiTargetResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="removeBindingsFromNodes">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="removeBindingsFromNodesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2684:MultiTargetResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="delete">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="deleteResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2684:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="deployLoggingConfig">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="deployLoggingConfigResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2684:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setNodeMappingForBinding">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setNodeMappingForBindingResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2684:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setProperties">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="ax2687:PropertyDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setPropertiesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2684:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="startBindings">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="startBindingsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2684:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="startBindingsOnNodes">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="startBindingsOnNodesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2684:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="stopBindings">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" type="xs:boolean"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="stopBindingsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2684:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="stopBindingsOnNodes">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param2" type="xs:boolean"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="stopBindingsOnNodesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2684:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="stopBindingsWithMode">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" type="xs:boolean"/>
+                  <xs:element minOccurs="0" name="param2" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="stopBindingsWithModeResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2684:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="stopBindingsWithModeOnNodes">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param2" type="xs:boolean"/>
+                  <xs:element minOccurs="0" name="param3" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="stopBindingsWithModeOnNodesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2684:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getTypesForBindings">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax2684:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getTypesForBindingsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax2684:StringEntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setLoggingConfig">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="ax2703:LoggerDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setLoggingConfigResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="createReferenceBinding">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="ax2688:BindingCreateDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="createReferenceBindingResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:long"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="createServiceBinding">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="ax2688:BindingCreateDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="createServiceBindingResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:long"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getReferenceBindingIdByName">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getReferenceBindingIdByNameResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:long"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getServiceBindingIdByName">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2684:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getServiceBindingIdByNameResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:long"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="update">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax2688:BindingDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:schema>
+      <xs:schema xmlns:ax2698="http://exception.core.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://types.core.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://exception.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="EntityIdentifier">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="id" type="xs:long"/>
+               <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="ResultMessage">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="actionHandle" nillable="true" type="xs:string"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="dependenciesPerEntityList"
+                           nillable="true"
+                           type="ax2683:DependenciesPerEntity"/>
+               <xs:element minOccurs="0" name="exception" nillable="true" type="xs:anyType"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="faultDetails" nillable="true"
+                           type="ax2678:AdminFaultDetail"/>
+               <xs:element minOccurs="0" name="id" nillable="true" type="ax2683:EntityIdentifier"/>
+               <xs:element minOccurs="0" name="messageCode" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="messageType" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="success" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="summary" nillable="true" type="xs:string"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="taskIds" nillable="true"
+                           type="xs:long"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="DependenciesPerEntity">
+            <xs:sequence>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="dependencies" nillable="true"
+                           type="xs:long"/>
+               <xs:element minOccurs="0" name="entityDesc" nillable="true" type="ax2683:EntityDesc"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="EntityDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2683:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="type" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="PathedEntityIdentifier">
+            <xs:complexContent>
+               <xs:extension base="ax2683:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="path" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="MultiTargetResultMessage">
+            <xs:complexContent>
+               <xs:extension base="ax2683:ResultMessage">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="targetId" nillable="true" type="ax2683:EntityIdentifier"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="StringEntityIdentifier">
+            <xs:complexContent>
+               <xs:extension base="ax2683:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="displayValue" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="value" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified"
+                 targetNamespace="http://nodetemplate.amx.api.admin.amf.tibco.com/xsd">
+         <xs:complexType name="FeatureTemplateDesc">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="componentID" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="highInclusive" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="lowInclusive" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="optional" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="rangeHigh" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="rangeLow" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified"
+                 targetNamespace="http://fixer.core.api.admin.amf.tibco.com/xsd">
+         <xs:complexType name="FixerHolder">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="fixer" nillable="true" type="ax2680:BaseFixer"/>
+               <xs:element minOccurs="0" name="fixerType" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="BaseFixer">
+            <xs:sequence/>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax2699="http://types.core.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://endpoint.amx.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://types.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="WireTargetDesc">
+            <xs:complexContent>
+               <xs:extension base="ax2699:ResultMessage">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="targetApplicationId" nillable="true"
+                                 type="ax2699:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="targetApplicationPath" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="targetDeployedBindingId" nillable="true"
+                                 type="ax2699:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="targetDeployedComponentId" nillable="true"
+                                 type="ax2699:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="targetDeployedServiceId" nillable="true"
+                                 type="ax2699:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="targetEnvironmentId" nillable="true"
+                                 type="ax2699:EntityIdentifier"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+      </xs:schema>
+   </wsdl:types>
+   <wsdl:message name="deployLoggingConfigRequest">
+      <wsdl:part name="parameters" element="ns:deployLoggingConfig"/>
+   </wsdl:message>
+   <wsdl:message name="deployLoggingConfigResponse">
+      <wsdl:part name="parameters" element="ns:deployLoggingConfigResponse"/>
+   </wsdl:message>
+   <wsdl:message name="AdminException">
+      <wsdl:part name="parameters" element="ns:AdminException"/>
+   </wsdl:message>
+   <wsdl:message name="getAllServiceBindingsWithNodeMappingsRequest">
+      <wsdl:part name="parameters" element="ns:getAllServiceBindingsWithNodeMappings"/>
+   </wsdl:message>
+   <wsdl:message name="getAllServiceBindingsWithNodeMappingsResponse">
+      <wsdl:part name="parameters" element="ns:getAllServiceBindingsWithNodeMappingsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getTypesForBindingsRequest">
+      <wsdl:part name="parameters" element="ns:getTypesForBindings"/>
+   </wsdl:message>
+   <wsdl:message name="getTypesForBindingsResponse">
+      <wsdl:part name="parameters" element="ns:getTypesForBindingsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="stopBindingsOnNodesRequest">
+      <wsdl:part name="parameters" element="ns:stopBindingsOnNodes"/>
+   </wsdl:message>
+   <wsdl:message name="stopBindingsOnNodesResponse">
+      <wsdl:part name="parameters" element="ns:stopBindingsOnNodesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="deleteRequest">
+      <wsdl:part name="parameters" element="ns:delete"/>
+   </wsdl:message>
+   <wsdl:message name="deleteResponse">
+      <wsdl:part name="parameters" element="ns:deleteResponse"/>
+   </wsdl:message>
+   <wsdl:message name="createReferenceBindingRequest">
+      <wsdl:part name="parameters" element="ns:createReferenceBinding"/>
+   </wsdl:message>
+   <wsdl:message name="createReferenceBindingResponse">
+      <wsdl:part name="parameters" element="ns:createReferenceBindingResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getNodesMappedToBindingRequest">
+      <wsdl:part name="parameters" element="ns:getNodesMappedToBinding"/>
+   </wsdl:message>
+   <wsdl:message name="getNodesMappedToBindingResponse">
+      <wsdl:part name="parameters" element="ns:getNodesMappedToBindingResponse"/>
+   </wsdl:message>
+   <wsdl:message name="removeBindingsFromNodesRequest">
+      <wsdl:part name="parameters" element="ns:removeBindingsFromNodes"/>
+   </wsdl:message>
+   <wsdl:message name="removeBindingsFromNodesResponse">
+      <wsdl:part name="parameters" element="ns:removeBindingsFromNodesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getReferenceBindingIdByNameRequest">
+      <wsdl:part name="parameters" element="ns:getReferenceBindingIdByName"/>
+   </wsdl:message>
+   <wsdl:message name="getReferenceBindingIdByNameResponse">
+      <wsdl:part name="parameters" element="ns:getReferenceBindingIdByNameResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getBindingRequest">
+      <wsdl:part name="parameters" element="ns:getBinding"/>
+   </wsdl:message>
+   <wsdl:message name="getBindingResponse">
+      <wsdl:part name="parameters" element="ns:getBindingResponse"/>
+   </wsdl:message>
+   <wsdl:message name="stopBindingsRequest">
+      <wsdl:part name="parameters" element="ns:stopBindings"/>
+   </wsdl:message>
+   <wsdl:message name="stopBindingsResponse">
+      <wsdl:part name="parameters" element="ns:stopBindingsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getPropertiesRequest">
+      <wsdl:part name="parameters" element="ns:getProperties"/>
+   </wsdl:message>
+   <wsdl:message name="getPropertiesResponse">
+      <wsdl:part name="parameters" element="ns:getPropertiesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="createServiceBindingRequest">
+      <wsdl:part name="parameters" element="ns:createServiceBinding"/>
+   </wsdl:message>
+   <wsdl:message name="createServiceBindingResponse">
+      <wsdl:part name="parameters" element="ns:createServiceBindingResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getBindingForEndpointRequest">
+      <wsdl:part name="parameters" element="ns:getBindingForEndpoint"/>
+   </wsdl:message>
+   <wsdl:message name="getBindingForEndpointResponse">
+      <wsdl:part name="parameters" element="ns:getBindingForEndpointResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getServiceBindingIdByNameRequest">
+      <wsdl:part name="parameters" element="ns:getServiceBindingIdByName"/>
+   </wsdl:message>
+   <wsdl:message name="getServiceBindingIdByNameResponse">
+      <wsdl:part name="parameters" element="ns:getServiceBindingIdByNameResponse"/>
+   </wsdl:message>
+   <wsdl:message name="setPropertiesRequest">
+      <wsdl:part name="parameters" element="ns:setProperties"/>
+   </wsdl:message>
+   <wsdl:message name="setPropertiesResponse">
+      <wsdl:part name="parameters" element="ns:setPropertiesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="setNodeMappingForBindingRequest">
+      <wsdl:part name="parameters" element="ns:setNodeMappingForBinding"/>
+   </wsdl:message>
+   <wsdl:message name="setNodeMappingForBindingResponse">
+      <wsdl:part name="parameters" element="ns:setNodeMappingForBindingResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getEndpointsForBindingsRequest">
+      <wsdl:part name="parameters" element="ns:getEndpointsForBindings"/>
+   </wsdl:message>
+   <wsdl:message name="getEndpointsForBindingsResponse">
+      <wsdl:part name="parameters" element="ns:getEndpointsForBindingsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getAllEnvServiceBindingsRequest">
+      <wsdl:part name="parameters" element="ns:getAllEnvServiceBindings"/>
+   </wsdl:message>
+   <wsdl:message name="getAllEnvServiceBindingsResponse">
+      <wsdl:part name="parameters" element="ns:getAllEnvServiceBindingsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="setLoggingConfigRequest">
+      <wsdl:part name="parameters" element="ns:setLoggingConfig"/>
+   </wsdl:message>
+   <wsdl:message name="setLoggingConfigResponse">
+      <wsdl:part name="parameters" element="ns:setLoggingConfigResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getDeployedEndpointsForBindingsRequest">
+      <wsdl:part name="parameters" element="ns:getDeployedEndpointsForBindings"/>
+   </wsdl:message>
+   <wsdl:message name="getDeployedEndpointsForBindingsResponse">
+      <wsdl:part name="parameters" element="ns:getDeployedEndpointsForBindingsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="addBindingsToNodesRequest">
+      <wsdl:part name="parameters" element="ns:addBindingsToNodes"/>
+   </wsdl:message>
+   <wsdl:message name="addBindingsToNodesResponse">
+      <wsdl:part name="parameters" element="ns:addBindingsToNodesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="stopBindingsWithModeRequest">
+      <wsdl:part name="parameters" element="ns:stopBindingsWithMode"/>
+   </wsdl:message>
+   <wsdl:message name="stopBindingsWithModeResponse">
+      <wsdl:part name="parameters" element="ns:stopBindingsWithModeResponse"/>
+   </wsdl:message>
+   <wsdl:message name="isBindingMemberOfLogicalNodeRequest">
+      <wsdl:part name="parameters" element="ns:isBindingMemberOfLogicalNode"/>
+   </wsdl:message>
+   <wsdl:message name="isBindingMemberOfLogicalNodeResponse">
+      <wsdl:part name="parameters" element="ns:isBindingMemberOfLogicalNodeResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getAllServiceBindingsRequest">
+      <wsdl:part name="parameters" element="ns:getAllServiceBindings"/>
+   </wsdl:message>
+   <wsdl:message name="getAllServiceBindingsResponse">
+      <wsdl:part name="parameters" element="ns:getAllServiceBindingsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getFactoryComponentAssociationsRequest">
+      <wsdl:part name="parameters" element="ns:getFactoryComponentAssociations"/>
+   </wsdl:message>
+   <wsdl:message name="getFactoryComponentAssociationsResponse">
+      <wsdl:part name="parameters" element="ns:getFactoryComponentAssociationsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="startBindingsRequest">
+      <wsdl:part name="parameters" element="ns:startBindings"/>
+   </wsdl:message>
+   <wsdl:message name="startBindingsResponse">
+      <wsdl:part name="parameters" element="ns:startBindingsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="updateRequest">
+      <wsdl:part name="parameters" element="ns:update"/>
+   </wsdl:message>
+   <wsdl:message name="stopBindingsWithModeOnNodesRequest">
+      <wsdl:part name="parameters" element="ns:stopBindingsWithModeOnNodes"/>
+   </wsdl:message>
+   <wsdl:message name="stopBindingsWithModeOnNodesResponse">
+      <wsdl:part name="parameters" element="ns:stopBindingsWithModeOnNodesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="startBindingsOnNodesRequest">
+      <wsdl:part name="parameters" element="ns:startBindingsOnNodes"/>
+   </wsdl:message>
+   <wsdl:message name="startBindingsOnNodesResponse">
+      <wsdl:part name="parameters" element="ns:startBindingsOnNodesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getBindingTypesRequest">
+      <wsdl:part name="parameters" element="ns:getBindingTypes"/>
+   </wsdl:message>
+   <wsdl:message name="getBindingTypesResponse">
+      <wsdl:part name="parameters" element="ns:getBindingTypesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getLoggingConfigRequest">
+      <wsdl:part name="parameters" element="ns:getLoggingConfig"/>
+   </wsdl:message>
+   <wsdl:message name="getLoggingConfigResponse">
+      <wsdl:part name="parameters" element="ns:getLoggingConfigResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getOwningServiceRequest">
+      <wsdl:part name="parameters" element="ns:getOwningService"/>
+   </wsdl:message>
+   <wsdl:message name="getOwningServiceResponse">
+      <wsdl:part name="parameters" element="ns:getOwningServiceResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getAllReferenceBindingsRequest">
+      <wsdl:part name="parameters" element="ns:getAllReferenceBindings"/>
+   </wsdl:message>
+   <wsdl:message name="getAllReferenceBindingsResponse">
+      <wsdl:part name="parameters" element="ns:getAllReferenceBindingsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getBindingsMappedToNodeRequest">
+      <wsdl:part name="parameters" element="ns:getBindingsMappedToNode"/>
+   </wsdl:message>
+   <wsdl:message name="getBindingsMappedToNodeResponse">
+      <wsdl:part name="parameters" element="ns:getBindingsMappedToNodeResponse"/>
+   </wsdl:message>
+   <wsdl:portType name="BindingServicePortType">
+      <wsdl:operation name="deployLoggingConfig">
+         <wsdl:input message="ns:deployLoggingConfigRequest" wsaw:Action="urn:deployLoggingConfig"/>
+         <wsdl:output message="ns:deployLoggingConfigResponse"
+                      wsaw:Action="urn:deployLoggingConfigResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:deployLoggingConfigAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getAllServiceBindingsWithNodeMappings">
+         <wsdl:input message="ns:getAllServiceBindingsWithNodeMappingsRequest"
+                     wsaw:Action="urn:getAllServiceBindingsWithNodeMappings"/>
+         <wsdl:output message="ns:getAllServiceBindingsWithNodeMappingsResponse"
+                      wsaw:Action="urn:getAllServiceBindingsWithNodeMappingsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getAllServiceBindingsWithNodeMappingsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getTypesForBindings">
+         <wsdl:input message="ns:getTypesForBindingsRequest" wsaw:Action="urn:getTypesForBindings"/>
+         <wsdl:output message="ns:getTypesForBindingsResponse"
+                      wsaw:Action="urn:getTypesForBindingsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getTypesForBindingsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="stopBindingsOnNodes">
+         <wsdl:input message="ns:stopBindingsOnNodesRequest" wsaw:Action="urn:stopBindingsOnNodes"/>
+         <wsdl:output message="ns:stopBindingsOnNodesResponse"
+                      wsaw:Action="urn:stopBindingsOnNodesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:stopBindingsOnNodesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="delete">
+         <wsdl:input message="ns:deleteRequest" wsaw:Action="urn:delete"/>
+         <wsdl:output message="ns:deleteResponse" wsaw:Action="urn:deleteResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:deleteAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="createReferenceBinding">
+         <wsdl:input message="ns:createReferenceBindingRequest"
+                     wsaw:Action="urn:createReferenceBinding"/>
+         <wsdl:output message="ns:createReferenceBindingResponse"
+                      wsaw:Action="urn:createReferenceBindingResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:createReferenceBindingAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getNodesMappedToBinding">
+         <wsdl:input message="ns:getNodesMappedToBindingRequest"
+                     wsaw:Action="urn:getNodesMappedToBinding"/>
+         <wsdl:output message="ns:getNodesMappedToBindingResponse"
+                      wsaw:Action="urn:getNodesMappedToBindingResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getNodesMappedToBindingAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="removeBindingsFromNodes">
+         <wsdl:input message="ns:removeBindingsFromNodesRequest"
+                     wsaw:Action="urn:removeBindingsFromNodes"/>
+         <wsdl:output message="ns:removeBindingsFromNodesResponse"
+                      wsaw:Action="urn:removeBindingsFromNodesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:removeBindingsFromNodesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getReferenceBindingIdByName">
+         <wsdl:input message="ns:getReferenceBindingIdByNameRequest"
+                     wsaw:Action="urn:getReferenceBindingIdByName"/>
+         <wsdl:output message="ns:getReferenceBindingIdByNameResponse"
+                      wsaw:Action="urn:getReferenceBindingIdByNameResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getReferenceBindingIdByNameAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getBinding">
+         <wsdl:input message="ns:getBindingRequest" wsaw:Action="urn:getBinding"/>
+         <wsdl:output message="ns:getBindingResponse" wsaw:Action="urn:getBindingResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getBindingAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="stopBindings">
+         <wsdl:input message="ns:stopBindingsRequest" wsaw:Action="urn:stopBindings"/>
+         <wsdl:output message="ns:stopBindingsResponse" wsaw:Action="urn:stopBindingsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:stopBindingsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getProperties">
+         <wsdl:input message="ns:getPropertiesRequest" wsaw:Action="urn:getProperties"/>
+         <wsdl:output message="ns:getPropertiesResponse" wsaw:Action="urn:getPropertiesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getPropertiesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="createServiceBinding">
+         <wsdl:input message="ns:createServiceBindingRequest" wsaw:Action="urn:createServiceBinding"/>
+         <wsdl:output message="ns:createServiceBindingResponse"
+                      wsaw:Action="urn:createServiceBindingResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:createServiceBindingAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getBindingForEndpoint">
+         <wsdl:input message="ns:getBindingForEndpointRequest"
+                     wsaw:Action="urn:getBindingForEndpoint"/>
+         <wsdl:output message="ns:getBindingForEndpointResponse"
+                      wsaw:Action="urn:getBindingForEndpointResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getBindingForEndpointAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceBindingIdByName">
+         <wsdl:input message="ns:getServiceBindingIdByNameRequest"
+                     wsaw:Action="urn:getServiceBindingIdByName"/>
+         <wsdl:output message="ns:getServiceBindingIdByNameResponse"
+                      wsaw:Action="urn:getServiceBindingIdByNameResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getServiceBindingIdByNameAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="setProperties">
+         <wsdl:input message="ns:setPropertiesRequest" wsaw:Action="urn:setProperties"/>
+         <wsdl:output message="ns:setPropertiesResponse" wsaw:Action="urn:setPropertiesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:setPropertiesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="setNodeMappingForBinding">
+         <wsdl:input message="ns:setNodeMappingForBindingRequest"
+                     wsaw:Action="urn:setNodeMappingForBinding"/>
+         <wsdl:output message="ns:setNodeMappingForBindingResponse"
+                      wsaw:Action="urn:setNodeMappingForBindingResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:setNodeMappingForBindingAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getEndpointsForBindings">
+         <wsdl:input message="ns:getEndpointsForBindingsRequest"
+                     wsaw:Action="urn:getEndpointsForBindings"/>
+         <wsdl:output message="ns:getEndpointsForBindingsResponse"
+                      wsaw:Action="urn:getEndpointsForBindingsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getEndpointsForBindingsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getAllEnvServiceBindings">
+         <wsdl:input message="ns:getAllEnvServiceBindingsRequest"
+                     wsaw:Action="urn:getAllEnvServiceBindings"/>
+         <wsdl:output message="ns:getAllEnvServiceBindingsResponse"
+                      wsaw:Action="urn:getAllEnvServiceBindingsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getAllEnvServiceBindingsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="setLoggingConfig">
+         <wsdl:input message="ns:setLoggingConfigRequest" wsaw:Action="urn:setLoggingConfig"/>
+         <wsdl:output message="ns:setLoggingConfigResponse"
+                      wsaw:Action="urn:setLoggingConfigResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:setLoggingConfigAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getDeployedEndpointsForBindings">
+         <wsdl:input message="ns:getDeployedEndpointsForBindingsRequest"
+                     wsaw:Action="urn:getDeployedEndpointsForBindings"/>
+         <wsdl:output message="ns:getDeployedEndpointsForBindingsResponse"
+                      wsaw:Action="urn:getDeployedEndpointsForBindingsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getDeployedEndpointsForBindingsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="addBindingsToNodes">
+         <wsdl:input message="ns:addBindingsToNodesRequest" wsaw:Action="urn:addBindingsToNodes"/>
+         <wsdl:output message="ns:addBindingsToNodesResponse"
+                      wsaw:Action="urn:addBindingsToNodesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:addBindingsToNodesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="stopBindingsWithMode">
+         <wsdl:input message="ns:stopBindingsWithModeRequest" wsaw:Action="urn:stopBindingsWithMode"/>
+         <wsdl:output message="ns:stopBindingsWithModeResponse"
+                      wsaw:Action="urn:stopBindingsWithModeResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:stopBindingsWithModeAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="isBindingMemberOfLogicalNode">
+         <wsdl:input message="ns:isBindingMemberOfLogicalNodeRequest"
+                     wsaw:Action="urn:isBindingMemberOfLogicalNode"/>
+         <wsdl:output message="ns:isBindingMemberOfLogicalNodeResponse"
+                      wsaw:Action="urn:isBindingMemberOfLogicalNodeResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:isBindingMemberOfLogicalNodeAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getAllServiceBindings">
+         <wsdl:input message="ns:getAllServiceBindingsRequest"
+                     wsaw:Action="urn:getAllServiceBindings"/>
+         <wsdl:output message="ns:getAllServiceBindingsResponse"
+                      wsaw:Action="urn:getAllServiceBindingsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getAllServiceBindingsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getFactoryComponentAssociations">
+         <wsdl:input message="ns:getFactoryComponentAssociationsRequest"
+                     wsaw:Action="urn:getFactoryComponentAssociations"/>
+         <wsdl:output message="ns:getFactoryComponentAssociationsResponse"
+                      wsaw:Action="urn:getFactoryComponentAssociationsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getFactoryComponentAssociationsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="startBindings">
+         <wsdl:input message="ns:startBindingsRequest" wsaw:Action="urn:startBindings"/>
+         <wsdl:output message="ns:startBindingsResponse" wsaw:Action="urn:startBindingsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:startBindingsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="update">
+         <wsdl:input message="ns:updateRequest" wsaw:Action="urn:update"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:updateAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="stopBindingsWithModeOnNodes">
+         <wsdl:input message="ns:stopBindingsWithModeOnNodesRequest"
+                     wsaw:Action="urn:stopBindingsWithModeOnNodes"/>
+         <wsdl:output message="ns:stopBindingsWithModeOnNodesResponse"
+                      wsaw:Action="urn:stopBindingsWithModeOnNodesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:stopBindingsWithModeOnNodesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="startBindingsOnNodes">
+         <wsdl:input message="ns:startBindingsOnNodesRequest" wsaw:Action="urn:startBindingsOnNodes"/>
+         <wsdl:output message="ns:startBindingsOnNodesResponse"
+                      wsaw:Action="urn:startBindingsOnNodesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:startBindingsOnNodesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getBindingTypes">
+         <wsdl:input message="ns:getBindingTypesRequest" wsaw:Action="urn:getBindingTypes"/>
+         <wsdl:output message="ns:getBindingTypesResponse" wsaw:Action="urn:getBindingTypesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getBindingTypesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getLoggingConfig">
+         <wsdl:input message="ns:getLoggingConfigRequest" wsaw:Action="urn:getLoggingConfig"/>
+         <wsdl:output message="ns:getLoggingConfigResponse"
+                      wsaw:Action="urn:getLoggingConfigResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getLoggingConfigAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getOwningService">
+         <wsdl:input message="ns:getOwningServiceRequest" wsaw:Action="urn:getOwningService"/>
+         <wsdl:output message="ns:getOwningServiceResponse"
+                      wsaw:Action="urn:getOwningServiceResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getOwningServiceAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getAllReferenceBindings">
+         <wsdl:input message="ns:getAllReferenceBindingsRequest"
+                     wsaw:Action="urn:getAllReferenceBindings"/>
+         <wsdl:output message="ns:getAllReferenceBindingsResponse"
+                      wsaw:Action="urn:getAllReferenceBindingsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getAllReferenceBindingsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getBindingsMappedToNode">
+         <wsdl:input message="ns:getBindingsMappedToNodeRequest"
+                     wsaw:Action="urn:getBindingsMappedToNode"/>
+         <wsdl:output message="ns:getBindingsMappedToNodeResponse"
+                      wsaw:Action="urn:getBindingsMappedToNodeResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getBindingsMappedToNodeAdminException"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="BindingServiceSoap11Binding" type="ns:BindingServicePortType">
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <wsdl:operation name="deployLoggingConfig">
+         <soap:operation soapAction="urn:deployLoggingConfig" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getTypesForBindings">
+         <soap:operation soapAction="urn:getTypesForBindings" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getAllServiceBindingsWithNodeMappings">
+         <soap:operation soapAction="urn:getAllServiceBindingsWithNodeMappings" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="delete">
+         <soap:operation soapAction="urn:delete" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="stopBindingsOnNodes">
+         <soap:operation soapAction="urn:stopBindingsOnNodes" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="createReferenceBinding">
+         <soap:operation soapAction="urn:createReferenceBinding" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="removeBindingsFromNodes">
+         <soap:operation soapAction="urn:removeBindingsFromNodes" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getBinding">
+         <soap:operation soapAction="urn:getBinding" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getReferenceBindingIdByName">
+         <soap:operation soapAction="urn:getReferenceBindingIdByName" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getNodesMappedToBinding">
+         <soap:operation soapAction="urn:getNodesMappedToBinding" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getProperties">
+         <soap:operation soapAction="urn:getProperties" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="stopBindings">
+         <soap:operation soapAction="urn:stopBindings" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="createServiceBinding">
+         <soap:operation soapAction="urn:createServiceBinding" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getBindingForEndpoint">
+         <soap:operation soapAction="urn:getBindingForEndpoint" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceBindingIdByName">
+         <soap:operation soapAction="urn:getServiceBindingIdByName" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setNodeMappingForBinding">
+         <soap:operation soapAction="urn:setNodeMappingForBinding" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setProperties">
+         <soap:operation soapAction="urn:setProperties" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEndpointsForBindings">
+         <soap:operation soapAction="urn:getEndpointsForBindings" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getAllEnvServiceBindings">
+         <soap:operation soapAction="urn:getAllEnvServiceBindings" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setLoggingConfig">
+         <soap:operation soapAction="urn:setLoggingConfig" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getDeployedEndpointsForBindings">
+         <soap:operation soapAction="urn:getDeployedEndpointsForBindings" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="addBindingsToNodes">
+         <soap:operation soapAction="urn:addBindingsToNodes" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="update">
+         <soap:operation soapAction="urn:update" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="stopBindingsWithMode">
+         <soap:operation soapAction="urn:stopBindingsWithMode" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="stopBindingsWithModeOnNodes">
+         <soap:operation soapAction="urn:stopBindingsWithModeOnNodes" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="isBindingMemberOfLogicalNode">
+         <soap:operation soapAction="urn:isBindingMemberOfLogicalNode" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getAllServiceBindings">
+         <soap:operation soapAction="urn:getAllServiceBindings" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getFactoryComponentAssociations">
+         <soap:operation soapAction="urn:getFactoryComponentAssociations" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="startBindings">
+         <soap:operation soapAction="urn:startBindings" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getBindingTypes">
+         <soap:operation soapAction="urn:getBindingTypes" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="startBindingsOnNodes">
+         <soap:operation soapAction="urn:startBindingsOnNodes" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getLoggingConfig">
+         <soap:operation soapAction="urn:getLoggingConfig" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getBindingsMappedToNode">
+         <soap:operation soapAction="urn:getBindingsMappedToNode" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getAllReferenceBindings">
+         <soap:operation soapAction="urn:getAllReferenceBindings" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getOwningService">
+         <soap:operation soapAction="urn:getOwningService" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="BindingServiceSoap12Binding" type="ns:BindingServicePortType">
+      <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <wsdl:operation name="deployLoggingConfig">
+         <soap12:operation soapAction="urn:deployLoggingConfig" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getTypesForBindings">
+         <soap12:operation soapAction="urn:getTypesForBindings" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getAllServiceBindingsWithNodeMappings">
+         <soap12:operation soapAction="urn:getAllServiceBindingsWithNodeMappings" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="delete">
+         <soap12:operation soapAction="urn:delete" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="stopBindingsOnNodes">
+         <soap12:operation soapAction="urn:stopBindingsOnNodes" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="createReferenceBinding">
+         <soap12:operation soapAction="urn:createReferenceBinding" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="removeBindingsFromNodes">
+         <soap12:operation soapAction="urn:removeBindingsFromNodes" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getBinding">
+         <soap12:operation soapAction="urn:getBinding" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getReferenceBindingIdByName">
+         <soap12:operation soapAction="urn:getReferenceBindingIdByName" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getNodesMappedToBinding">
+         <soap12:operation soapAction="urn:getNodesMappedToBinding" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getProperties">
+         <soap12:operation soapAction="urn:getProperties" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="stopBindings">
+         <soap12:operation soapAction="urn:stopBindings" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="createServiceBinding">
+         <soap12:operation soapAction="urn:createServiceBinding" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getBindingForEndpoint">
+         <soap12:operation soapAction="urn:getBindingForEndpoint" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceBindingIdByName">
+         <soap12:operation soapAction="urn:getServiceBindingIdByName" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setNodeMappingForBinding">
+         <soap12:operation soapAction="urn:setNodeMappingForBinding" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setProperties">
+         <soap12:operation soapAction="urn:setProperties" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEndpointsForBindings">
+         <soap12:operation soapAction="urn:getEndpointsForBindings" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getAllEnvServiceBindings">
+         <soap12:operation soapAction="urn:getAllEnvServiceBindings" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setLoggingConfig">
+         <soap12:operation soapAction="urn:setLoggingConfig" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getDeployedEndpointsForBindings">
+         <soap12:operation soapAction="urn:getDeployedEndpointsForBindings" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="addBindingsToNodes">
+         <soap12:operation soapAction="urn:addBindingsToNodes" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="update">
+         <soap12:operation soapAction="urn:update" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="stopBindingsWithMode">
+         <soap12:operation soapAction="urn:stopBindingsWithMode" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="stopBindingsWithModeOnNodes">
+         <soap12:operation soapAction="urn:stopBindingsWithModeOnNodes" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="isBindingMemberOfLogicalNode">
+         <soap12:operation soapAction="urn:isBindingMemberOfLogicalNode" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getAllServiceBindings">
+         <soap12:operation soapAction="urn:getAllServiceBindings" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getFactoryComponentAssociations">
+         <soap12:operation soapAction="urn:getFactoryComponentAssociations" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="startBindings">
+         <soap12:operation soapAction="urn:startBindings" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getBindingTypes">
+         <soap12:operation soapAction="urn:getBindingTypes" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="startBindingsOnNodes">
+         <soap12:operation soapAction="urn:startBindingsOnNodes" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getLoggingConfig">
+         <soap12:operation soapAction="urn:getLoggingConfig" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getBindingsMappedToNode">
+         <soap12:operation soapAction="urn:getBindingsMappedToNode" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getAllReferenceBindings">
+         <soap12:operation soapAction="urn:getAllReferenceBindings" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getOwningService">
+         <soap12:operation soapAction="urn:getOwningService" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="BindingServiceHttpBinding" type="ns:BindingServicePortType">
+      <http:binding verb="POST"/>
+      <wsdl:operation name="deployLoggingConfig">
+         <http:operation location="BindingService/deployLoggingConfig"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="deployLoggingConfig"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="deployLoggingConfig"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getTypesForBindings">
+         <http:operation location="BindingService/getTypesForBindings"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getTypesForBindings"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getTypesForBindings"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getAllServiceBindingsWithNodeMappings">
+         <http:operation location="BindingService/getAllServiceBindingsWithNodeMappings"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getAllServiceBindingsWithNodeMappings"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getAllServiceBindingsWithNodeMappings"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="delete">
+         <http:operation location="BindingService/delete"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="delete"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="delete"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="stopBindingsOnNodes">
+         <http:operation location="BindingService/stopBindingsOnNodes"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="stopBindingsOnNodes"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="stopBindingsOnNodes"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="createReferenceBinding">
+         <http:operation location="BindingService/createReferenceBinding"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="createReferenceBinding"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="createReferenceBinding"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="removeBindingsFromNodes">
+         <http:operation location="BindingService/removeBindingsFromNodes"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="removeBindingsFromNodes"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="removeBindingsFromNodes"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getBinding">
+         <http:operation location="BindingService/getBinding"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getBinding"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getBinding"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getReferenceBindingIdByName">
+         <http:operation location="BindingService/getReferenceBindingIdByName"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getReferenceBindingIdByName"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getReferenceBindingIdByName"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getNodesMappedToBinding">
+         <http:operation location="BindingService/getNodesMappedToBinding"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getNodesMappedToBinding"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getNodesMappedToBinding"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getProperties">
+         <http:operation location="BindingService/getProperties"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getProperties"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getProperties"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="stopBindings">
+         <http:operation location="BindingService/stopBindings"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="stopBindings"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="stopBindings"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="createServiceBinding">
+         <http:operation location="BindingService/createServiceBinding"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="createServiceBinding"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="createServiceBinding"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getBindingForEndpoint">
+         <http:operation location="BindingService/getBindingForEndpoint"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getBindingForEndpoint"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getBindingForEndpoint"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceBindingIdByName">
+         <http:operation location="BindingService/getServiceBindingIdByName"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getServiceBindingIdByName"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getServiceBindingIdByName"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="setNodeMappingForBinding">
+         <http:operation location="BindingService/setNodeMappingForBinding"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="setNodeMappingForBinding"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="setNodeMappingForBinding"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="setProperties">
+         <http:operation location="BindingService/setProperties"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="setProperties"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="setProperties"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getEndpointsForBindings">
+         <http:operation location="BindingService/getEndpointsForBindings"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getEndpointsForBindings"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getEndpointsForBindings"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getAllEnvServiceBindings">
+         <http:operation location="BindingService/getAllEnvServiceBindings"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getAllEnvServiceBindings"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getAllEnvServiceBindings"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="setLoggingConfig">
+         <http:operation location="BindingService/setLoggingConfig"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="setLoggingConfig"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="setLoggingConfig"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getDeployedEndpointsForBindings">
+         <http:operation location="BindingService/getDeployedEndpointsForBindings"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getDeployedEndpointsForBindings"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getDeployedEndpointsForBindings"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="addBindingsToNodes">
+         <http:operation location="BindingService/addBindingsToNodes"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="addBindingsToNodes"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="addBindingsToNodes"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="update">
+         <http:operation location="BindingService/update"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="update"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="stopBindingsWithMode">
+         <http:operation location="BindingService/stopBindingsWithMode"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="stopBindingsWithMode"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="stopBindingsWithMode"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="stopBindingsWithModeOnNodes">
+         <http:operation location="BindingService/stopBindingsWithModeOnNodes"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="stopBindingsWithModeOnNodes"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="stopBindingsWithModeOnNodes"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="isBindingMemberOfLogicalNode">
+         <http:operation location="BindingService/isBindingMemberOfLogicalNode"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="isBindingMemberOfLogicalNode"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="isBindingMemberOfLogicalNode"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getAllServiceBindings">
+         <http:operation location="BindingService/getAllServiceBindings"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getAllServiceBindings"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getAllServiceBindings"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getFactoryComponentAssociations">
+         <http:operation location="BindingService/getFactoryComponentAssociations"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getFactoryComponentAssociations"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getFactoryComponentAssociations"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="startBindings">
+         <http:operation location="BindingService/startBindings"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="startBindings"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="startBindings"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getBindingTypes">
+         <http:operation location="BindingService/getBindingTypes"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getBindingTypes"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getBindingTypes"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="startBindingsOnNodes">
+         <http:operation location="BindingService/startBindingsOnNodes"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="startBindingsOnNodes"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="startBindingsOnNodes"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getLoggingConfig">
+         <http:operation location="BindingService/getLoggingConfig"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getLoggingConfig"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getLoggingConfig"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getBindingsMappedToNode">
+         <http:operation location="BindingService/getBindingsMappedToNode"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getBindingsMappedToNode"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getBindingsMappedToNode"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getAllReferenceBindings">
+         <http:operation location="BindingService/getAllReferenceBindings"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getAllReferenceBindings"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getAllReferenceBindings"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getOwningService">
+         <http:operation location="BindingService/getOwningService"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getOwningService"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getOwningService"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:service name="BindingService">
+      <wsdl:port name="BindingServiceHttpSoap11Endpoint"
+                 binding="ns:BindingServiceSoap11Binding">
+         <soap:address location="http://10.238.233.141:8120/amxadministrator/services/BindingService.BindingServiceHttpSoap11Endpoint/"/>
+      </wsdl:port>
+      <wsdl:port name="BindingServiceHttpSoap12Endpoint"
+                 binding="ns:BindingServiceSoap12Binding">
+         <soap12:address location="http://10.238.233.141:8120/amxadministrator/services/BindingService.BindingServiceHttpSoap12Endpoint/"/>
+      </wsdl:port>
+      <wsdl:port name="BindingServiceHttpEndpoint" binding="ns:BindingServiceHttpBinding">
+         <http:address location="http://10.238.233.141:8120/amxadministrator/services/BindingService.BindingServiceHttpEndpoint/"/>
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>

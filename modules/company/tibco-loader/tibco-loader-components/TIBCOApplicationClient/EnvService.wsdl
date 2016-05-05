@@ -1,0 +1,2179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:ns="http://env.amx.api.admin.amf.tibco.com"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:ns1="http://org.apache.axis2/xsd"
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+                  xmlns:ax291="http://stagingarea.amx.api.admin.amf.tibco.com/xsd"
+                  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+                  xmlns:ax270="http://fixer.core.api.admin.amf.tibco.com/xsd"
+                  xmlns:ax281="http://endpoint.amx.api.admin.amf.tibco.com/xsd"
+                  xmlns:ax283="http://application.amx.api.admin.amf.tibco.com/xsd"
+                  xmlns:ax294="http://svars.amx.api.admin.amf.tibco.com/xsd"
+                  xmlns:ax273="http://types.core.api.admin.amf.tibco.com/xsd"
+                  xmlns:ax296="http://resinstance.amx.api.admin.amf.tibco.com/xsd"
+                  xmlns:ax275="http://env.amx.api.admin.amf.tibco.com/xsd"
+                  xmlns:ax276="http://reference.api.admin.amf.tibco.com/xsd"
+                  xmlns:ax287="http://host.amx.api.admin.amf.tibco.com/xsd"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:ax268="http://exception.core.api.admin.amf.tibco.com/xsd"
+                  targetNamespace="http://env.amx.api.admin.amf.tibco.com">
+   <wsdl:documentation>EnvService</wsdl:documentation>
+   <wsdl:types>
+      <xs:schema xmlns:ax271="http://fixer.core.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax269="http://env.amx.api.admin.amf.tibco.com"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://exception.core.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://env.amx.api.admin.amf.tibco.com"/>
+         <xs:import namespace="http://fixer.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="AdminException">
+            <xs:complexContent>
+               <xs:extension base="ax269:Exception">
+                  <xs:sequence>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="faultDetails" nillable="true"
+                                 type="ax268:AdminFaultDetail"/>
+                     <xs:element minOccurs="0" name="summary" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="AdminFaultDetail">
+            <xs:sequence>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="causes" nillable="true"
+                           type="xs:string"/>
+               <xs:element minOccurs="0" name="detail" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="exception" nillable="true" type="xs:anyType"/>
+               <xs:element minOccurs="0" name="field" nillable="true" type="xs:string"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="fixerHolders" nillable="true"
+                           type="ax271:FixerHolder"/>
+               <xs:element minOccurs="0" name="severity" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax297="http://types.core.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://resinstance.amx.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://types.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="FeatureAndMode">
+            <xs:sequence>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="featureIdAndDesc" nillable="true"
+                           type="ax296:FeatureIdAndDesc"/>
+               <xs:element minOccurs="0" name="nodeId" nillable="true" type="ax297:EntityIdentifier"/>
+               <xs:element minOccurs="0" name="provisionMode" type="xs:boolean"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="FeatureIdAndDesc">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="default" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="featureId" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="resId" nillable="true" type="ax297:EntityIdentifier"/>
+            </xs:sequence>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified"
+                 targetNamespace="http://stagingarea.amx.api.admin.amf.tibco.com/xsd">
+         <xs:complexType name="FeatureIdentifier">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="componentID" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="descriptiveName" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="version" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax284="http://types.core.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://application.amx.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://types.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="PropertyDesc">
+            <xs:complexContent>
+               <xs:extension base="ax273:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="mustSupply" type="xs:boolean"/>
+                     <xs:element minOccurs="0" name="ownerType" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="source" nillable="true" type="ax273:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="targetType" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="type" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="typeDisplayName" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="value" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax277="http://types.core.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://reference.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://types.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="AdminEntityDesc">
+            <xs:complexContent>
+               <xs:extension base="ax277:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="contact" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="modifiedBy" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="modifiedDate" nillable="true" type="xs:dateTime"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax293="http://host.amx.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax272="http://exception.core.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax295="http://svars.amx.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax274="http://types.core.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax279="http://env.amx.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://env.amx.api.admin.amf.tibco.com">
+         <xs:import namespace="http://exception.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://types.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://env.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://host.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://svars.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="Exception">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="Exception" nillable="true" type="xs:anyType"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="AdminException">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="AdminException" nillable="true" type="ax268:AdminException"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnv">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnvResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" nillable="true" type="ax279:EnvDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnvByName">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnvByNameResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" nillable="true" type="ax279:EnvDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getAllEnvResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax279:EnvDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getAllEnvDetailsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax279:EnvDetailsDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getAllEnvDescs">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax279:FilterDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getAllEnvDescsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax279:EnvTreeDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getSpecifiedEnvDescs">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax279:FilterDesc"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="ax274:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getSpecifiedEnvDescsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax279:EnvTreeDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getServiceVirtualizationConfig">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getServiceVirtualizationConfigResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" nillable="true" type="ax279:ServiceVertDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnabledSharedResources">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnabledSharedResourcesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax279:SharedResourceDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnabledHosts">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getEnabledHostsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax287:PlatformDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getSVar">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getSVarResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" nillable="true" type="ax295:SVarDoc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getSVars">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getSVarsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax295:SVarDoc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="testServiceVirtualizationConfig">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="ax279:ServiceVertDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="testServiceVirtualizationConfigResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" nillable="true" type="ax274:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="delete">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param0" nillable="true"
+                              type="ax274:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" type="xs:boolean"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="deleteResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax274:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="deleteSVarsReturnWithRM">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="deleteSVarsReturnWithRMResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax274:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="disassociateHosts">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="ax274:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="disassociateHostsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax274:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setServiceVirtualizationConfigWithContext">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="ax279:ServiceVertDesc"/>
+                  <xs:element minOccurs="0" name="param2" nillable="true" type="ax274:OperationContext"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setServiceVirtualizationConfigWithContextResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true"
+                              type="ax274:ResultMessage"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="createAndUpdateSVars">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="ax295:SVarDoc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="createAndUpdateSVarsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="deleteSVar">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="deleteSVarResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="deleteSVars">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="deleteSVarsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="enableHost">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="ax274:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="enableHostResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setHosts">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="ax274:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setHostsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setSVar">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="ax295:SVarDoc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setSVarResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setSVars">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="ax295:SVarDoc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setSVarsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setServiceVirtualizationConfig">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+                  <xs:element minOccurs="0" name="param1" nillable="true" type="ax279:ServiceVertDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setServiceVirtualizationConfigResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setSharedResources">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax274:EntityIdentifier"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="param1" nillable="true"
+                              type="ax274:EntityIdentifier"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="setSharedResourcesResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="update">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax279:EnvUpdtDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="updateResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:int"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="create">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="ax279:EnvUpdtDesc"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="createResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:long"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getId">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="param0" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getIdResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="return" type="xs:long"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:schema>
+      <xs:schema xmlns:ax298="http://resinstance.amx.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax289="http://exception.core.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://types.core.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://exception.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://resinstance.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="EntityIdentifier">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="id" type="xs:long"/>
+               <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="ChildIdentifierList">
+            <xs:complexContent>
+               <xs:extension base="ax273:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="children" nillable="true"
+                                 type="ax273:EntityIdentifier"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="ResultMessage">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="actionHandle" nillable="true" type="xs:string"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="dependenciesPerEntityList"
+                           nillable="true"
+                           type="ax273:DependenciesPerEntity"/>
+               <xs:element minOccurs="0" name="exception" nillable="true" type="xs:anyType"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="faultDetails" nillable="true"
+                           type="ax268:AdminFaultDetail"/>
+               <xs:element minOccurs="0" name="id" nillable="true" type="ax273:EntityIdentifier"/>
+               <xs:element minOccurs="0" name="messageCode" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="messageType" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="success" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="summary" nillable="true" type="xs:string"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="taskIds" nillable="true"
+                           type="xs:long"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="DependenciesPerEntity">
+            <xs:sequence>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="dependencies" nillable="true"
+                           type="xs:long"/>
+               <xs:element minOccurs="0" name="entityDesc" nillable="true" type="ax273:EntityDesc"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="EntityDesc">
+            <xs:complexContent>
+               <xs:extension base="ax273:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="type" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="OperationContext">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="baseUrl" nillable="true" type="xs:string"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="dependencies" nillable="true"
+                           type="xs:long"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="dependenciesPerEntityList"
+                           nillable="true"
+                           type="ax273:DependenciesPerEntity"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="featureAndMode" nillable="true"
+                           type="ax298:FeatureAndMode"/>
+               <xs:element minOccurs="0" name="mode" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="useOrDependencyForConfigure" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="userActionHandle" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="userActionIdentifier" nillable="true"
+                           type="ax273:EntityDesc"/>
+               <xs:element minOccurs="0" name="usingRefreshMode" type="xs:boolean"/>
+            </xs:sequence>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified"
+                 targetNamespace="http://svars.amx.api.admin.amf.tibco.com/xsd">
+         <xs:complexType name="SVarDoc">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="inheritedValue" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="type" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="value" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax280="http://types.core.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax286="http://endpoint.amx.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax278="http://reference.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://env.amx.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://reference.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://types.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://endpoint.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="EnvDesc">
+            <xs:complexContent>
+               <xs:extension base="ax278:AdminEntityDesc">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="secure" type="xs:boolean"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="EnvDetailsDesc">
+            <xs:complexContent>
+               <xs:extension base="ax273:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="applications" nillable="true"
+                                 type="ax275:EnvDetailsDesc_ApplicationTimestampDesc"/>
+                     <xs:element minOccurs="0" name="contract" nillable="true" type="xs:string"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="nodes" nillable="true"
+                                 type="ax273:EntityIdentifier"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="EnvDetailsDesc_ApplicationTimestampDesc">
+            <xs:complexContent>
+               <xs:extension base="ax273:EntityIdentifier">
+                  <xs:sequence/>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="FilterDesc">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="apps" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="nodes" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="svcRef" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="wires" type="xs:boolean"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="EnvTreeDesc">
+            <xs:complexContent>
+               <xs:extension base="ax278:AdminEntityDesc">
+                  <xs:sequence>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="folders" nillable="true"
+                                 type="ax273:ChildIdentifierList"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="nodes" nillable="true"
+                                 type="ax273:ChildIdentifierList"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="promotedReferences" nillable="true"
+                                 type="ax286:ReferenceSummaryDesc"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="promotedServices" nillable="true"
+                                 type="ax286:ServiceSummaryDesc"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="ServiceVertDesc">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="connectionPassword" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="connectionPoolSize" type="xs:int"/>
+               <xs:element minOccurs="0" name="connectionUsername" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="emptyPwd" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="emsConnectionIdentity" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="emsReconnectAttemptCount" type="xs:int"/>
+               <xs:element minOccurs="0" name="emsReconnectAttemptDelay" type="xs:int"/>
+               <xs:element minOccurs="0" name="emsServerURL" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="id" type="xs:int"/>
+               <xs:element minOccurs="0" name="loginCredUserPwd" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="outboundSessionPoolSize" type="xs:int"/>
+               <xs:element minOccurs="0" name="sslClientProvider" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="sslDebugTrace" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="sslEmsServerURL" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="sslExpectedHostName" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="sslTrace" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="sslVendor" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="sslVerifyHost" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="useSSLforOut" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="useXA" type="xs:boolean"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="SharedResourceDesc">
+            <xs:complexContent>
+               <xs:extension base="ax278:AdminEntityDesc">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="type" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="EnvUpdtDesc">
+            <xs:complexContent>
+               <xs:extension base="ax273:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="contact" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="secure" type="xs:boolean"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax290="http://types.core.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax292="http://stagingarea.amx.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax288="http://reference.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://host.amx.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://reference.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://types.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://stagingarea.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="PlatformDesc">
+            <xs:complexContent>
+               <xs:extension base="ax288:AdminEntityDesc">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="actionStatus" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="cluster" nillable="true" type="ax287:ClusterDesc"/>
+                     <xs:element minOccurs="0" name="hostType" nillable="true" type="xs:string"/>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="installedRAs" nillable="true"
+                                 type="ax292:FeatureIdentifier"/>
+                     <xs:element minOccurs="0" name="singletonHost" nillable="true"
+                                 type="ax287:SingletonHostDesc"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="ClusterDesc">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="appServerClusterName" nillable="true" type="xs:string"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="hosts" nillable="true"
+                           type="ax287:ClusteredHostDesc"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="SingletonHostDesc">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="actionStatus" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="adapterVersion" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="hpaVersion" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="machineName" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="managementUrl" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="message" nillable="true" type="ax273:ResultMessage"/>
+               <xs:element minOccurs="0" name="osArch" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="osName" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="osVersion" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="password" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="runtimeState" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="secure" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="status" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="statusEnum" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="syncOnRestart" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="username" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="ClusteredHostDesc">
+            <xs:complexContent>
+               <xs:extension base="ax287:SingletonHostDesc">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="clusterMemberName" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified"
+                 targetNamespace="http://fixer.core.api.admin.amf.tibco.com/xsd">
+         <xs:complexType name="FixerHolder">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="fixer" nillable="true" type="ax270:BaseFixer"/>
+               <xs:element minOccurs="0" name="fixerType" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="BaseFixer">
+            <xs:sequence/>
+         </xs:complexType>
+      </xs:schema>
+      <xs:schema xmlns:ax282="http://types.core.api.admin.amf.tibco.com/xsd"
+                 xmlns:ax285="http://application.amx.api.admin.amf.tibco.com/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://endpoint.amx.api.admin.amf.tibco.com/xsd">
+         <xs:import namespace="http://types.core.api.admin.amf.tibco.com/xsd"/>
+         <xs:import namespace="http://application.amx.api.admin.amf.tibco.com/xsd"/>
+         <xs:complexType name="BindingConfigSummaryDesc">
+            <xs:complexContent>
+               <xs:extension base="ax273:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="properties" nillable="true"
+                                 type="ax285:PropertyDesc"/>
+                     <xs:element minOccurs="0" name="type" nillable="true" type="xs:string"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="ReferenceSummaryDesc">
+            <xs:complexContent>
+               <xs:extension base="ax281:BindingConfigSummaryDesc">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="targetServiceBinding" nillable="true"
+                                 type="ax273:EntityIdentifier"/>
+                     <xs:element minOccurs="0" name="wireByImpl" type="xs:boolean"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:complexType name="ServiceSummaryDesc">
+            <xs:complexContent>
+               <xs:extension base="ax273:EntityIdentifier">
+                  <xs:sequence>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" name="bindings" nillable="true"
+                                 type="ax281:BindingConfigSummaryDesc"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+      </xs:schema>
+   </wsdl:types>
+   <wsdl:message name="getSVarsRequest">
+      <wsdl:part name="parameters" element="ns:getSVars"/>
+   </wsdl:message>
+   <wsdl:message name="getSVarsResponse">
+      <wsdl:part name="parameters" element="ns:getSVarsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="AdminException">
+      <wsdl:part name="parameters" element="ns:AdminException"/>
+   </wsdl:message>
+   <wsdl:message name="setHostsRequest">
+      <wsdl:part name="parameters" element="ns:setHosts"/>
+   </wsdl:message>
+   <wsdl:message name="setHostsResponse">
+      <wsdl:part name="parameters" element="ns:setHostsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="createRequest">
+      <wsdl:part name="parameters" element="ns:create"/>
+   </wsdl:message>
+   <wsdl:message name="createResponse">
+      <wsdl:part name="parameters" element="ns:createResponse"/>
+   </wsdl:message>
+   <wsdl:message name="createAndUpdateSVarsRequest">
+      <wsdl:part name="parameters" element="ns:createAndUpdateSVars"/>
+   </wsdl:message>
+   <wsdl:message name="createAndUpdateSVarsResponse">
+      <wsdl:part name="parameters" element="ns:createAndUpdateSVarsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getEnabledSharedResourcesRequest">
+      <wsdl:part name="parameters" element="ns:getEnabledSharedResources"/>
+   </wsdl:message>
+   <wsdl:message name="getEnabledSharedResourcesResponse">
+      <wsdl:part name="parameters" element="ns:getEnabledSharedResourcesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="deleteRequest">
+      <wsdl:part name="parameters" element="ns:delete"/>
+   </wsdl:message>
+   <wsdl:message name="deleteResponse">
+      <wsdl:part name="parameters" element="ns:deleteResponse"/>
+   </wsdl:message>
+   <wsdl:message name="setServiceVirtualizationConfigRequest">
+      <wsdl:part name="parameters" element="ns:setServiceVirtualizationConfig"/>
+   </wsdl:message>
+   <wsdl:message name="setServiceVirtualizationConfigResponse">
+      <wsdl:part name="parameters" element="ns:setServiceVirtualizationConfigResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getIdRequest">
+      <wsdl:part name="parameters" element="ns:getId"/>
+   </wsdl:message>
+   <wsdl:message name="getIdResponse">
+      <wsdl:part name="parameters" element="ns:getIdResponse"/>
+   </wsdl:message>
+   <wsdl:message name="enableHostRequest">
+      <wsdl:part name="parameters" element="ns:enableHost"/>
+   </wsdl:message>
+   <wsdl:message name="enableHostResponse">
+      <wsdl:part name="parameters" element="ns:enableHostResponse"/>
+   </wsdl:message>
+   <wsdl:message name="setSharedResourcesRequest">
+      <wsdl:part name="parameters" element="ns:setSharedResources"/>
+   </wsdl:message>
+   <wsdl:message name="setSharedResourcesResponse">
+      <wsdl:part name="parameters" element="ns:setSharedResourcesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getEnvByNameRequest">
+      <wsdl:part name="parameters" element="ns:getEnvByName"/>
+   </wsdl:message>
+   <wsdl:message name="getEnvByNameResponse">
+      <wsdl:part name="parameters" element="ns:getEnvByNameResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getSpecifiedEnvDescsRequest">
+      <wsdl:part name="parameters" element="ns:getSpecifiedEnvDescs"/>
+   </wsdl:message>
+   <wsdl:message name="getSpecifiedEnvDescsResponse">
+      <wsdl:part name="parameters" element="ns:getSpecifiedEnvDescsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="deleteSVarsRequest">
+      <wsdl:part name="parameters" element="ns:deleteSVars"/>
+   </wsdl:message>
+   <wsdl:message name="deleteSVarsResponse">
+      <wsdl:part name="parameters" element="ns:deleteSVarsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="deleteSVarRequest">
+      <wsdl:part name="parameters" element="ns:deleteSVar"/>
+   </wsdl:message>
+   <wsdl:message name="deleteSVarResponse">
+      <wsdl:part name="parameters" element="ns:deleteSVarResponse"/>
+   </wsdl:message>
+   <wsdl:message name="setServiceVirtualizationConfigWithContextRequest">
+      <wsdl:part name="parameters" element="ns:setServiceVirtualizationConfigWithContext"/>
+   </wsdl:message>
+   <wsdl:message name="setServiceVirtualizationConfigWithContextResponse">
+      <wsdl:part name="parameters"
+                 element="ns:setServiceVirtualizationConfigWithContextResponse"/>
+   </wsdl:message>
+   <wsdl:message name="setSVarsRequest">
+      <wsdl:part name="parameters" element="ns:setSVars"/>
+   </wsdl:message>
+   <wsdl:message name="setSVarsResponse">
+      <wsdl:part name="parameters" element="ns:setSVarsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getEnvRequest">
+      <wsdl:part name="parameters" element="ns:getEnv"/>
+   </wsdl:message>
+   <wsdl:message name="getEnvResponse">
+      <wsdl:part name="parameters" element="ns:getEnvResponse"/>
+   </wsdl:message>
+   <wsdl:message name="deleteSVarsReturnWithRMRequest">
+      <wsdl:part name="parameters" element="ns:deleteSVarsReturnWithRM"/>
+   </wsdl:message>
+   <wsdl:message name="deleteSVarsReturnWithRMResponse">
+      <wsdl:part name="parameters" element="ns:deleteSVarsReturnWithRMResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getServiceVirtualizationConfigRequest">
+      <wsdl:part name="parameters" element="ns:getServiceVirtualizationConfig"/>
+   </wsdl:message>
+   <wsdl:message name="getServiceVirtualizationConfigResponse">
+      <wsdl:part name="parameters" element="ns:getServiceVirtualizationConfigResponse"/>
+   </wsdl:message>
+   <wsdl:message name="testServiceVirtualizationConfigRequest">
+      <wsdl:part name="parameters" element="ns:testServiceVirtualizationConfig"/>
+   </wsdl:message>
+   <wsdl:message name="testServiceVirtualizationConfigResponse">
+      <wsdl:part name="parameters" element="ns:testServiceVirtualizationConfigResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getAllEnvRequest"/>
+   <wsdl:message name="getAllEnvResponse">
+      <wsdl:part name="parameters" element="ns:getAllEnvResponse"/>
+   </wsdl:message>
+   <wsdl:message name="updateRequest">
+      <wsdl:part name="parameters" element="ns:update"/>
+   </wsdl:message>
+   <wsdl:message name="updateResponse">
+      <wsdl:part name="parameters" element="ns:updateResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getEnabledHostsRequest">
+      <wsdl:part name="parameters" element="ns:getEnabledHosts"/>
+   </wsdl:message>
+   <wsdl:message name="getEnabledHostsResponse">
+      <wsdl:part name="parameters" element="ns:getEnabledHostsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="disassociateHostsRequest">
+      <wsdl:part name="parameters" element="ns:disassociateHosts"/>
+   </wsdl:message>
+   <wsdl:message name="disassociateHostsResponse">
+      <wsdl:part name="parameters" element="ns:disassociateHostsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getAllEnvDetailsRequest"/>
+   <wsdl:message name="getAllEnvDetailsResponse">
+      <wsdl:part name="parameters" element="ns:getAllEnvDetailsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="setSVarRequest">
+      <wsdl:part name="parameters" element="ns:setSVar"/>
+   </wsdl:message>
+   <wsdl:message name="setSVarResponse">
+      <wsdl:part name="parameters" element="ns:setSVarResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getSVarRequest">
+      <wsdl:part name="parameters" element="ns:getSVar"/>
+   </wsdl:message>
+   <wsdl:message name="getSVarResponse">
+      <wsdl:part name="parameters" element="ns:getSVarResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getAllEnvDescsRequest">
+      <wsdl:part name="parameters" element="ns:getAllEnvDescs"/>
+   </wsdl:message>
+   <wsdl:message name="getAllEnvDescsResponse">
+      <wsdl:part name="parameters" element="ns:getAllEnvDescsResponse"/>
+   </wsdl:message>
+   <wsdl:portType name="EnvServicePortType">
+      <wsdl:operation name="getSVars">
+         <wsdl:input message="ns:getSVarsRequest" wsaw:Action="urn:getSVars"/>
+         <wsdl:output message="ns:getSVarsResponse" wsaw:Action="urn:getSVarsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getSVarsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="setHosts">
+         <wsdl:input message="ns:setHostsRequest" wsaw:Action="urn:setHosts"/>
+         <wsdl:output message="ns:setHostsResponse" wsaw:Action="urn:setHostsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:setHostsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="create">
+         <wsdl:input message="ns:createRequest" wsaw:Action="urn:create"/>
+         <wsdl:output message="ns:createResponse" wsaw:Action="urn:createResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:createAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="createAndUpdateSVars">
+         <wsdl:input message="ns:createAndUpdateSVarsRequest" wsaw:Action="urn:createAndUpdateSVars"/>
+         <wsdl:output message="ns:createAndUpdateSVarsResponse"
+                      wsaw:Action="urn:createAndUpdateSVarsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:createAndUpdateSVarsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getEnabledSharedResources">
+         <wsdl:input message="ns:getEnabledSharedResourcesRequest"
+                     wsaw:Action="urn:getEnabledSharedResources"/>
+         <wsdl:output message="ns:getEnabledSharedResourcesResponse"
+                      wsaw:Action="urn:getEnabledSharedResourcesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getEnabledSharedResourcesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="delete">
+         <wsdl:input message="ns:deleteRequest" wsaw:Action="urn:delete"/>
+         <wsdl:output message="ns:deleteResponse" wsaw:Action="urn:deleteResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:deleteAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="setServiceVirtualizationConfig">
+         <wsdl:input message="ns:setServiceVirtualizationConfigRequest"
+                     wsaw:Action="urn:setServiceVirtualizationConfig"/>
+         <wsdl:output message="ns:setServiceVirtualizationConfigResponse"
+                      wsaw:Action="urn:setServiceVirtualizationConfigResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:setServiceVirtualizationConfigAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getId">
+         <wsdl:input message="ns:getIdRequest" wsaw:Action="urn:getId"/>
+         <wsdl:output message="ns:getIdResponse" wsaw:Action="urn:getIdResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getIdAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="enableHost">
+         <wsdl:input message="ns:enableHostRequest" wsaw:Action="urn:enableHost"/>
+         <wsdl:output message="ns:enableHostResponse" wsaw:Action="urn:enableHostResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:enableHostAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="setSharedResources">
+         <wsdl:input message="ns:setSharedResourcesRequest" wsaw:Action="urn:setSharedResources"/>
+         <wsdl:output message="ns:setSharedResourcesResponse"
+                      wsaw:Action="urn:setSharedResourcesResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:setSharedResourcesAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvByName">
+         <wsdl:input message="ns:getEnvByNameRequest" wsaw:Action="urn:getEnvByName"/>
+         <wsdl:output message="ns:getEnvByNameResponse" wsaw:Action="urn:getEnvByNameResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getEnvByNameAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getSpecifiedEnvDescs">
+         <wsdl:input message="ns:getSpecifiedEnvDescsRequest" wsaw:Action="urn:getSpecifiedEnvDescs"/>
+         <wsdl:output message="ns:getSpecifiedEnvDescsResponse"
+                      wsaw:Action="urn:getSpecifiedEnvDescsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getSpecifiedEnvDescsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="deleteSVars">
+         <wsdl:input message="ns:deleteSVarsRequest" wsaw:Action="urn:deleteSVars"/>
+         <wsdl:output message="ns:deleteSVarsResponse" wsaw:Action="urn:deleteSVarsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:deleteSVarsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="deleteSVar">
+         <wsdl:input message="ns:deleteSVarRequest" wsaw:Action="urn:deleteSVar"/>
+         <wsdl:output message="ns:deleteSVarResponse" wsaw:Action="urn:deleteSVarResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:deleteSVarAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="setServiceVirtualizationConfigWithContext">
+         <wsdl:input message="ns:setServiceVirtualizationConfigWithContextRequest"
+                     wsaw:Action="urn:setServiceVirtualizationConfigWithContext"/>
+         <wsdl:output message="ns:setServiceVirtualizationConfigWithContextResponse"
+                      wsaw:Action="urn:setServiceVirtualizationConfigWithContextResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:setServiceVirtualizationConfigWithContextAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="setSVars">
+         <wsdl:input message="ns:setSVarsRequest" wsaw:Action="urn:setSVars"/>
+         <wsdl:output message="ns:setSVarsResponse" wsaw:Action="urn:setSVarsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:setSVarsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getEnv">
+         <wsdl:input message="ns:getEnvRequest" wsaw:Action="urn:getEnv"/>
+         <wsdl:output message="ns:getEnvResponse" wsaw:Action="urn:getEnvResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getEnvAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="deleteSVarsReturnWithRM">
+         <wsdl:input message="ns:deleteSVarsReturnWithRMRequest"
+                     wsaw:Action="urn:deleteSVarsReturnWithRM"/>
+         <wsdl:output message="ns:deleteSVarsReturnWithRMResponse"
+                      wsaw:Action="urn:deleteSVarsReturnWithRMResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:deleteSVarsReturnWithRMAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceVirtualizationConfig">
+         <wsdl:input message="ns:getServiceVirtualizationConfigRequest"
+                     wsaw:Action="urn:getServiceVirtualizationConfig"/>
+         <wsdl:output message="ns:getServiceVirtualizationConfigResponse"
+                      wsaw:Action="urn:getServiceVirtualizationConfigResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getServiceVirtualizationConfigAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="testServiceVirtualizationConfig">
+         <wsdl:input message="ns:testServiceVirtualizationConfigRequest"
+                     wsaw:Action="urn:testServiceVirtualizationConfig"/>
+         <wsdl:output message="ns:testServiceVirtualizationConfigResponse"
+                      wsaw:Action="urn:testServiceVirtualizationConfigResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:testServiceVirtualizationConfigAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getAllEnv">
+         <wsdl:input message="ns:getAllEnvRequest" wsaw:Action="urn:getAllEnv"/>
+         <wsdl:output message="ns:getAllEnvResponse" wsaw:Action="urn:getAllEnvResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getAllEnvAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="update">
+         <wsdl:input message="ns:updateRequest" wsaw:Action="urn:update"/>
+         <wsdl:output message="ns:updateResponse" wsaw:Action="urn:updateResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:updateAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getEnabledHosts">
+         <wsdl:input message="ns:getEnabledHostsRequest" wsaw:Action="urn:getEnabledHosts"/>
+         <wsdl:output message="ns:getEnabledHostsResponse" wsaw:Action="urn:getEnabledHostsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getEnabledHostsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="disassociateHosts">
+         <wsdl:input message="ns:disassociateHostsRequest" wsaw:Action="urn:disassociateHosts"/>
+         <wsdl:output message="ns:disassociateHostsResponse"
+                      wsaw:Action="urn:disassociateHostsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:disassociateHostsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getAllEnvDetails">
+         <wsdl:input message="ns:getAllEnvDetailsRequest" wsaw:Action="urn:getAllEnvDetails"/>
+         <wsdl:output message="ns:getAllEnvDetailsResponse"
+                      wsaw:Action="urn:getAllEnvDetailsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getAllEnvDetailsAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="setSVar">
+         <wsdl:input message="ns:setSVarRequest" wsaw:Action="urn:setSVar"/>
+         <wsdl:output message="ns:setSVarResponse" wsaw:Action="urn:setSVarResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:setSVarAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getSVar">
+         <wsdl:input message="ns:getSVarRequest" wsaw:Action="urn:getSVar"/>
+         <wsdl:output message="ns:getSVarResponse" wsaw:Action="urn:getSVarResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getSVarAdminException"/>
+      </wsdl:operation>
+      <wsdl:operation name="getAllEnvDescs">
+         <wsdl:input message="ns:getAllEnvDescsRequest" wsaw:Action="urn:getAllEnvDescs"/>
+         <wsdl:output message="ns:getAllEnvDescsResponse" wsaw:Action="urn:getAllEnvDescsResponse"/>
+         <wsdl:fault message="ns:AdminException" name="AdminException"
+                     wsaw:Action="urn:getAllEnvDescsAdminException"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="EnvServiceSoap11Binding" type="ns:EnvServicePortType">
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <wsdl:operation name="getSVars">
+         <soap:operation soapAction="urn:getSVars" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setHosts">
+         <soap:operation soapAction="urn:setHosts" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnabledSharedResources">
+         <soap:operation soapAction="urn:getEnabledSharedResources" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="createAndUpdateSVars">
+         <soap:operation soapAction="urn:createAndUpdateSVars" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="create">
+         <soap:operation soapAction="urn:create" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="delete">
+         <soap:operation soapAction="urn:delete" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setServiceVirtualizationConfig">
+         <soap:operation soapAction="urn:setServiceVirtualizationConfig" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getId">
+         <soap:operation soapAction="urn:getId" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="enableHost">
+         <soap:operation soapAction="urn:enableHost" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvByName">
+         <soap:operation soapAction="urn:getEnvByName" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setSharedResources">
+         <soap:operation soapAction="urn:setSharedResources" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getSpecifiedEnvDescs">
+         <soap:operation soapAction="urn:getSpecifiedEnvDescs" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="deleteSVars">
+         <soap:operation soapAction="urn:deleteSVars" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="deleteSVar">
+         <soap:operation soapAction="urn:deleteSVar" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setServiceVirtualizationConfigWithContext">
+         <soap:operation soapAction="urn:setServiceVirtualizationConfigWithContext" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setSVars">
+         <soap:operation soapAction="urn:setSVars" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnv">
+         <soap:operation soapAction="urn:getEnv" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceVirtualizationConfig">
+         <soap:operation soapAction="urn:getServiceVirtualizationConfig" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="deleteSVarsReturnWithRM">
+         <soap:operation soapAction="urn:deleteSVarsReturnWithRM" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="testServiceVirtualizationConfig">
+         <soap:operation soapAction="urn:testServiceVirtualizationConfig" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getAllEnv">
+         <soap:operation soapAction="urn:getAllEnv" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnabledHosts">
+         <soap:operation soapAction="urn:getEnabledHosts" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="update">
+         <soap:operation soapAction="urn:update" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getAllEnvDetails">
+         <soap:operation soapAction="urn:getAllEnvDetails" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="disassociateHosts">
+         <soap:operation soapAction="urn:disassociateHosts" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getSVar">
+         <soap:operation soapAction="urn:getSVar" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setSVar">
+         <soap:operation soapAction="urn:setSVar" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getAllEnvDescs">
+         <soap:operation soapAction="urn:getAllEnvDescs" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="EnvServiceSoap12Binding" type="ns:EnvServicePortType">
+      <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <wsdl:operation name="getSVars">
+         <soap12:operation soapAction="urn:getSVars" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setHosts">
+         <soap12:operation soapAction="urn:setHosts" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnabledSharedResources">
+         <soap12:operation soapAction="urn:getEnabledSharedResources" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="createAndUpdateSVars">
+         <soap12:operation soapAction="urn:createAndUpdateSVars" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="create">
+         <soap12:operation soapAction="urn:create" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="delete">
+         <soap12:operation soapAction="urn:delete" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setServiceVirtualizationConfig">
+         <soap12:operation soapAction="urn:setServiceVirtualizationConfig" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getId">
+         <soap12:operation soapAction="urn:getId" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="enableHost">
+         <soap12:operation soapAction="urn:enableHost" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvByName">
+         <soap12:operation soapAction="urn:getEnvByName" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setSharedResources">
+         <soap12:operation soapAction="urn:setSharedResources" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getSpecifiedEnvDescs">
+         <soap12:operation soapAction="urn:getSpecifiedEnvDescs" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="deleteSVars">
+         <soap12:operation soapAction="urn:deleteSVars" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="deleteSVar">
+         <soap12:operation soapAction="urn:deleteSVar" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setServiceVirtualizationConfigWithContext">
+         <soap12:operation soapAction="urn:setServiceVirtualizationConfigWithContext" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setSVars">
+         <soap12:operation soapAction="urn:setSVars" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnv">
+         <soap12:operation soapAction="urn:getEnv" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceVirtualizationConfig">
+         <soap12:operation soapAction="urn:getServiceVirtualizationConfig" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="deleteSVarsReturnWithRM">
+         <soap12:operation soapAction="urn:deleteSVarsReturnWithRM" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="testServiceVirtualizationConfig">
+         <soap12:operation soapAction="urn:testServiceVirtualizationConfig" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getAllEnv">
+         <soap12:operation soapAction="urn:getAllEnv" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getEnabledHosts">
+         <soap12:operation soapAction="urn:getEnabledHosts" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="update">
+         <soap12:operation soapAction="urn:update" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getAllEnvDetails">
+         <soap12:operation soapAction="urn:getAllEnvDetails" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="disassociateHosts">
+         <soap12:operation soapAction="urn:disassociateHosts" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getSVar">
+         <soap12:operation soapAction="urn:getSVar" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="setSVar">
+         <soap12:operation soapAction="urn:setSVar" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getAllEnvDescs">
+         <soap12:operation soapAction="urn:getAllEnvDescs" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="AdminException">
+            <soap12:fault use="literal" name="AdminException"/>
+         </wsdl:fault>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="EnvServiceHttpBinding" type="ns:EnvServicePortType">
+      <http:binding verb="POST"/>
+      <wsdl:operation name="getSVars">
+         <http:operation location="EnvService/getSVars"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getSVars"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getSVars"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="setHosts">
+         <http:operation location="EnvService/setHosts"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="setHosts"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="setHosts"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getEnabledSharedResources">
+         <http:operation location="EnvService/getEnabledSharedResources"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getEnabledSharedResources"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getEnabledSharedResources"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="createAndUpdateSVars">
+         <http:operation location="EnvService/createAndUpdateSVars"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="createAndUpdateSVars"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="createAndUpdateSVars"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="create">
+         <http:operation location="EnvService/create"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="create"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="create"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="delete">
+         <http:operation location="EnvService/delete"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="delete"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="delete"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="setServiceVirtualizationConfig">
+         <http:operation location="EnvService/setServiceVirtualizationConfig"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="setServiceVirtualizationConfig"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="setServiceVirtualizationConfig"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getId">
+         <http:operation location="EnvService/getId"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getId"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getId"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="enableHost">
+         <http:operation location="EnvService/enableHost"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="enableHost"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="enableHost"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getEnvByName">
+         <http:operation location="EnvService/getEnvByName"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getEnvByName"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getEnvByName"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="setSharedResources">
+         <http:operation location="EnvService/setSharedResources"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="setSharedResources"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="setSharedResources"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getSpecifiedEnvDescs">
+         <http:operation location="EnvService/getSpecifiedEnvDescs"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getSpecifiedEnvDescs"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getSpecifiedEnvDescs"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="deleteSVars">
+         <http:operation location="EnvService/deleteSVars"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="deleteSVars"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="deleteSVars"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="deleteSVar">
+         <http:operation location="EnvService/deleteSVar"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="deleteSVar"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="deleteSVar"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="setServiceVirtualizationConfigWithContext">
+         <http:operation location="EnvService/setServiceVirtualizationConfigWithContext"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="setServiceVirtualizationConfigWithContext"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="setServiceVirtualizationConfigWithContext"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="setSVars">
+         <http:operation location="EnvService/setSVars"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="setSVars"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="setSVars"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getEnv">
+         <http:operation location="EnvService/getEnv"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getEnv"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getEnv"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getServiceVirtualizationConfig">
+         <http:operation location="EnvService/getServiceVirtualizationConfig"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getServiceVirtualizationConfig"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getServiceVirtualizationConfig"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="deleteSVarsReturnWithRM">
+         <http:operation location="EnvService/deleteSVarsReturnWithRM"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="deleteSVarsReturnWithRM"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="deleteSVarsReturnWithRM"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="testServiceVirtualizationConfig">
+         <http:operation location="EnvService/testServiceVirtualizationConfig"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="testServiceVirtualizationConfig"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="testServiceVirtualizationConfig"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getAllEnv">
+         <http:operation location="EnvService/getAllEnv"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getAllEnv"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getAllEnv"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getEnabledHosts">
+         <http:operation location="EnvService/getEnabledHosts"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getEnabledHosts"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getEnabledHosts"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="update">
+         <http:operation location="EnvService/update"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="update"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="update"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getAllEnvDetails">
+         <http:operation location="EnvService/getAllEnvDetails"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getAllEnvDetails"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getAllEnvDetails"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="disassociateHosts">
+         <http:operation location="EnvService/disassociateHosts"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="disassociateHosts"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="disassociateHosts"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getSVar">
+         <http:operation location="EnvService/getSVar"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getSVar"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getSVar"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="setSVar">
+         <http:operation location="EnvService/setSVar"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="setSVar"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="setSVar"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getAllEnvDescs">
+         <http:operation location="EnvService/getAllEnvDescs"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="getAllEnvDescs"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="getAllEnvDescs"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:service name="EnvService">
+      <wsdl:port name="EnvServiceHttpSoap11Endpoint" binding="ns:EnvServiceSoap11Binding">
+         <soap:address location="http://10.238.233.141:8120/amxadministrator/services/EnvService.EnvServiceHttpSoap11Endpoint/"/>
+      </wsdl:port>
+      <wsdl:port name="EnvServiceHttpSoap12Endpoint" binding="ns:EnvServiceSoap12Binding">
+         <soap12:address location="http://10.238.233.141:8120/amxadministrator/services/EnvService.EnvServiceHttpSoap12Endpoint/"/>
+      </wsdl:port>
+      <wsdl:port name="EnvServiceHttpEndpoint" binding="ns:EnvServiceHttpBinding">
+         <http:address location="http://10.238.233.141:8120/amxadministrator/services/EnvService.EnvServiceHttpEndpoint/"/>
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>

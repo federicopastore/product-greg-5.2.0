@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>it.company.wso2.registry.integrations.tibco</groupId>
+    <artifactId>tibco-loader</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <groupId>it.company.wso2.registry.integrations.tibco</groupId>
+  <artifactId>tibco-loader-repository</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <url>http://maven.apache.org</url>
+  <packaging>pom</packaging>
+
+  <name>WSO2 Carbon - Tibco Manager Feature Repository</name>
+  
+ <build>
+ <plugins>
+	 <plugin>
+		 <groupId>org.wso2.maven</groupId>
+		 <artifactId>carbon-p2-plugin</artifactId>
+		 <version>1.5.6</version>
+			 <executions>
+				 <execution>
+					 <id>2-p2-repo-generation</id>
+					 <phase>package</phase>
+					 <goals>
+					 <goal>p2-repo-gen</goal>
+					 </goals>
+					 <configuration>
+						<profile>default</profile>
+						<metadataRepository>file:${basedir}/target/p2-repo</metadataRepository>
+						<artifactRepository>file:${basedir}/target/p2-repo</artifactRepository>
+						<destination>${basedir}/target/wso2carbon-core-${carbon.kernel.version}/repository/components
+						</destination>
+						<deleteOldProfileFiles>true</deleteOldProfileFiles>
+						 <publishArtifacts>true</publishArtifacts>
+						 <publishArtifactRepository>true</publishArtifactRepository>
+						 <featureArtifacts>
+							 <featureArtifactDef>
+								it.company.wso2.registry.integrations.tibco:TibcoManager.features:1.0.0
+							 </featureArtifactDef>
+						 </featureArtifacts>
+					 </configuration>
+				 </execution>
+			 </executions>
+	 </plugin>
+ </plugins>
+ </build>
+  
+  
+</project>
