@@ -1,0 +1,53 @@
+<!--
+  ~ Copyright (c) WSO2 Inc. (http://wso2.com) All Rights Reserved.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 wr-filters">
+
+        <div class="wr-search">
+            <div>
+                <form class="form-group" id="assetSearchForm" action='{{url "/assets/"}}{{rxt.shortName}}/list'>
+
+                    <div class="form-group has-feedback form-search">
+                        <input type="text" name="query" id="inp_searchAsset" class="form-control"
+                               placeholder="Search asset by name..." value="{{searchQuery}}">
+                        <a href="javascript:void(0)" id="searchButton" class="form-control-feedback search"
+                           title="{{t "Search"}}">
+                            <i class="fw fw-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="/publisher/pages/advanced-search" class="form-control-feedback advance"
+                           id="advance-search" title="{{t "Advance Search"}}">
+                            <span>{{t "Advanced Search"}}</span>
+                        </a>
+                        {{>search-options-popover .}}
+                        <input type="hidden" name="sortby" value="{{paging.sortBy}}"/>
+                        <input type="hidden" name="sort" value="{{paging.sortOrder}}"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+        <!-- content -->
+        <div class="ast-container" id="search-results">
+			{{#each assets}}
+			    {{#dyn asset=type}}
+			            {{>result}}
+			    {{/dyn}}
+			{{/each}}
+        </div>
+    </div>
+</div>

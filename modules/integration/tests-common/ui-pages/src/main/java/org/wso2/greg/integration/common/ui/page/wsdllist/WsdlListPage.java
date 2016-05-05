@@ -1,0 +1,328 @@
+/*
+*Copyright (c) 2005-2010, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+*
+*WSO2 Inc. licenses this file to you under the Apache License,
+*Version 2.0 (the "License"); you may not use this file except
+*in compliance with the License.
+*You may obtain a copy of the License at
+*
+*http://www.apache.org/licenses/LICENSE-2.0
+*
+*Unless required by applicable law or agreed to in writing,
+*software distributed under the License is distributed on an
+*"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+*KIND, either express or implied.  See the License for the
+*specific language governing permissions and limitations
+*under the License.
+*/
+package org.wso2.greg.integration.common.ui.page.wsdllist;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.wso2.greg.integration.common.ui.page.util.UIElementMapper;
+
+import java.io.IOException;
+import java.util.NoSuchElementException;
+
+public class WsdlListPage {
+
+    private static final Log log = LogFactory.getLog(WsdlListPage.class);
+    private WebDriver driver;
+    private UIElementMapper uiElementMapper;
+    private String serviceNameOnServer = null;
+
+    public WsdlListPage(WebDriver driver) throws IOException {
+        this.driver = driver;
+        this.uiElementMapper = UIElementMapper.getInstance();
+        // Check that we're on the right page.
+        if (!driver.findElement(By.id(uiElementMapper.getElement("wsdl.list.dashboard.middle.text"))).
+                getText().contains("WSDL List")) {
+
+            throw new IllegalStateException("This is not wsdl List Page");
+        }
+    }
+
+    public boolean checkOnUploadWsdl(String wsdlName) throws InterruptedException {
+
+        log.info(wsdlName);
+        driver.navigate().refresh();
+
+        //Waiting maximum 30secs to show updated wsdl list.
+        for (int i = 0; i <= 6; i++) {
+            Thread.sleep(5000);
+            driver.navigate().refresh();
+
+            if (!driver.findElement(By.xpath(uiElementMapper.getElement("wsdl.list.workarea"))).
+                    getText().contains("There are no WSDLs added")) {
+                serviceNameOnServer = driver.
+                        findElement(By.xpath(uiElementMapper.getElement("wsdl.table.first.element"))).getText();
+                break;
+            }
+        }
+
+        log.info(serviceNameOnServer);
+        if (wsdlName.equals(serviceNameOnServer)) {
+            log.info("Uploaded Wsdl exists");
+            return true;
+
+        } else {
+            String resourceXpath = "/html/body/table/tbody/tr[2]/td[3]/table/tbody/tr[2]/td/div/div/form[4]/table/tbody/tr[";
+            String resourceXpath2 = "]/td/a";
+
+            for (int i = 2; i < 10; i++) {
+                String serviceNameOnAppServer = resourceXpath + i + resourceXpath2;
+
+                String actualResourceName = driver.findElement(By.xpath(serviceNameOnAppServer)).getText();
+                log.info("val on app is -------> " + actualResourceName);
+                log.info("Correct is    -------> " + wsdlName);
+
+                try {
+
+                    if (wsdlName.contains(actualResourceName)) {
+                        log.info("Uploaded Wsdl exists");
+                        return true;
+
+                    }  else {
+                        return false;
+                    }
+
+                } catch (NoSuchElementException ex) {
+                    log.info("Cannot Find the Uploaded Wsdl");
+
+                }
+
+            }
+
+        }
+
+        return false;
+    }
+
+    public boolean visualize(String wsdlName, String registryPath) throws InterruptedException {
+        log.info(wsdlName);
+        driver.navigate().refresh();
+
+        //Waiting maximum 30secs to show updated wsdl list.
+        WebElement workArea = (new WebDriverWait(driver, 30))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(uiElementMapper.getElement("wsdl.list.workarea"))));
+
+        log.info(serviceNameOnServer);
+        if (wsdlName.equals(serviceNameOnServer)) {
+            log.info("Uploaded Wsdl exists");
+            //click on wsdl
+            driver.findElement(By.xpath(uiElementMapper.getElement("wsdl.table.first.element"))).click();
+            //execute visualize js
+            WebElement resourceMain = (new WebDriverWait(driver, 30))
+                    .until(ExpectedConditions.presenceOfElementLocated(By.id("resourceMain")));
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            String jsFunction = "visualizeXML('"+ registryPath + "', 'wsdl')";
+            js.executeScript(jsFunction);
+            Thread.sleep(3000);
+            //switch to visualize iframe
+            driver.switchTo().frame(
+                    driver.findElement(By.xpath("/html/body/div[contains(@class, " +
+                            "'ui-dialog ui-draggable ui-resizable')]/div[1]/div[@id=\"dialog\"]/iframe")));
+
+            if (driver.findElement(By.xpath("/html/body/table/tbody/tr/td[contains(@class,'source-area')]/div[contains(@class,'definitions')]")) != null) {
+                return true;
+            }
+
+        } else {
+            String resourceXpath = "/html/body/table/tbody/tr[2]/td[3]/table/tbody/tr[2]/td/div/div/form[4]/table/tbody/tr[";
+            String resourceXpath2 = "]/td/a";
+
+            for (int i = 2; i < 10; i++) {
+                String serviceNameOnAppServer = resourceXpath + i + resourceXpath2;
+
+                String actualResourceName = driver.findElement(By.xpath(serviceNameOnAppServer)).getText();
+                log.info("val on app is -------> " + actualResourceName);
+                log.info("Correct is    -------> " + wsdlName);
+
+                try {
+
+                    if (wsdlName.contains(actualResourceName)) {
+                        log.info("Uploaded Wsdl exists");
+                        //click on wsdl
+                        driver.findElement(By.xpath(uiElementMapper.getElement("wsdl.table.first.element"))).click();
+                        //execute visualize js
+                        WebElement myDynamicElement = (new WebDriverWait(driver, 30))
+                                .until(ExpectedConditions.presenceOfElementLocated(By.id("resourceMain")));
+                        JavascriptExecutor js = (JavascriptExecutor) driver;
+                        String jsFunction = "visualizeXML('"+ registryPath + "', 'wsdl')";
+                        js.executeScript(jsFunction);
+                        Thread.sleep(3000);
+                        //switch to visualize iframe
+                        driver.switchTo().frame(
+                                driver.findElement(By.xpath("/html/body/div[contains(@class, " +
+                                        "'ui-dialog ui-draggable ui-resizable')]/div[1]/div[@id=\"dialog\"]/iframe")));
+
+                        if (driver.findElement(By.xpath("/html/body/table/tbody/tr/td[contains(@class,'source-area')]/div[contains(@class,'definitions')]")) != null) {
+                            return true;
+                        }
+
+                    }  else {
+                        return false;
+                    }
+
+                } catch (NoSuchElementException ex) {
+                    log.info("Cannot Find the Uploaded Wsdl");
+
+                }
+
+            }
+
+        }
+
+        return false;
+    }
+
+
+
+    public void lifeCyclePromotion(String lifeCycleName) throws InterruptedException {
+        driver.findElement(By.id(uiElementMapper.getElement("life.cycle.expand.id"))).click();
+        driver.findElement(By.linkText(uiElementMapper.getElement("life.cycle.add"))).click();
+        new Select(driver.findElement(By.id("aspect"))).selectByVisibleText(lifeCycleName);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("addAspect()");
+
+        //checking the checkList
+        String lifeCycleStage= driver.findElement(By.xpath(uiElementMapper.getElement("life.cycle.stage"))).getText();
+
+        if(lifeCycleStage.contains("Development")){
+            log.info("lifecycle is at the Testing stage");
+
+            driver.findElement(By.id(uiElementMapper.getElement("life.cycle.add.option"))).click();
+            Thread.sleep(1000);
+            driver.findElement(By.id(uiElementMapper.getElement("life.cycle.add.option1"))).click();
+            Thread.sleep(2000);
+            driver.findElement(By.id(uiElementMapper.getElement("life.cycle.add.option2"))).click();
+            Thread.sleep(1000);
+
+            //promoting the lifecycle
+            driver.findElement(By.id(uiElementMapper.getElement("life.cycle.promote"))).click();
+
+
+            driver.findElement(By.cssSelector(uiElementMapper.getElement("life.cycle.promote.ok.button"))).click();
+
+            String nextLifeCycleStage= driver.findElement(By.xpath(uiElementMapper.getElement("life.cycle.stage"))).getText();
+
+            if(nextLifeCycleStage.contains("Testing")){
+                log.info("lifecycle is at the Testing stage");
+
+
+            }  else {
+                log.info("lifecycle is not  at the Testing stage");
+                throw new NoSuchElementException();
+            }
+
+        } else {
+            log.info("lifecycle is not  at the Development stage");
+            throw new NoSuchElementException();
+        }
+
+
+        String lifeCycleStage2= driver.findElement(By.xpath(uiElementMapper.getElement("life.cycle.stage"))).getText();
+
+
+        if(lifeCycleStage2.contains("Testing")){
+            log.info("lifecycle is promoting from  Testing stage");
+
+            driver.findElement(By.id(uiElementMapper.getElement("life.cycle.add.option"))).click();
+            Thread.sleep(1000);
+            driver.findElement(By.id(uiElementMapper.getElement("life.cycle.add.option1"))).click();
+            Thread.sleep(1000);
+            driver.findElement(By.id(uiElementMapper.getElement("life.cycle.add.option2"))).click();
+
+            Thread.sleep(1000);
+            //promoting the lifecycle
+            driver.findElement(By.id(uiElementMapper.getElement("life.cycle.promote"))).click();
+            driver.findElement(By.cssSelector(uiElementMapper.getElement("life.cycle.promote.ok.button"))).click();
+            Thread.sleep(1000);
+
+            String FinalLifeCycleStage= driver.findElement(By.xpath(uiElementMapper.getElement("life.cycle.stage"))).getText();
+
+            if(FinalLifeCycleStage.contains("production")){
+                log.info("lifecycle is at the production stage");
+
+                driver.findElement(By.id(uiElementMapper.getElement("life.cycle.publish"))).click();
+                driver.findElement(By.cssSelector(uiElementMapper.getElement("life.cycle.promote.ok.button"))).click();
+
+
+            }
+            else {
+                log.info("lifecycle is not at the production stage");
+                throw new NoSuchElementException();
+
+            }
+
+        }
+
+        else {
+            log.info("cannot promote the lifecycle its not at the Testing stage");
+            throw new NoSuchElementException();
+        }
+
+    }
+
+
+
+    public boolean promoteWsdlLifecycle(String WsdlName,String lifeCycleName) throws InterruptedException {
+
+        log.info(WsdlName);
+        Thread.sleep(5000);
+
+        String firstElementXpath ="/html/body/table/tbody/tr[2]/td[3]/table/tbody/tr[2]/td/div/div/" +
+                "form[4]/table/tbody/tr/td/a";
+        String wsdlNameOnServer = driver.findElement(By.xpath(firstElementXpath)).getText();
+        log.info(wsdlNameOnServer);
+        if (WsdlName.equals(wsdlNameOnServer)) {
+            log.info("Uploaded WSDL exists");
+            driver.findElement(By.xpath(firstElementXpath)).click();
+            lifeCyclePromotion(lifeCycleName);
+            return true;
+        } else {
+            String resourceXpath = "/html/body/table/tbody/tr[2]/td[3]/table/tbody/tr[2]/td/div/div/" +
+                    "form[4]/table/tbody/tr[";
+            String resourceXpath2 = "]/td/a";
+            for (int i = 2; i < 10; i++) {
+                String WsdlNameOnAppServer = resourceXpath + i + resourceXpath2;
+
+                String actualWsdlName = driver.findElement(By.xpath(WsdlNameOnAppServer)).getText();
+                log.info("val on app is -------> " + actualWsdlName);
+                log.info("Correct is    -------> " + WsdlName);
+
+                try {
+                    if (WsdlName.contains(actualWsdlName)) {
+                        log.info("Uploaded WSDL exists");
+                        driver.findElement(By.xpath(WsdlNameOnAppServer)).click();
+                        lifeCyclePromotion(lifeCycleName);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } catch (NoSuchElementException ex) {
+                    log.info("Cannot Find the Uploaded WSDL");
+
+                }
+            }
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
+}

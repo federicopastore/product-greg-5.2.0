@@ -1,0 +1,37 @@
+<!-- header -->
+{{> sidebar-container . }}
+<header>
+    <div class="row wr-global-header">
+        <div class="col-xs-8 col-sm-6 col-lg-8 app-logo">
+            <a href="{{url ""}}{{meta.landingPage}}"><img src="{{url "/themes/default/img/logo.png"}}" /><h2 class="app-title">Governance Center - Publisher</h2></a>
+        </div>
+        <div class="col-xs-4 col-sm-6 col-lg-4 wr-auth-container">
+            <div class="wr-auth pull-right">
+                <a href="#" data-toggle="dropdown">
+                    <div id="auth-btn" class="auth-img">
+                        <span class="fw-stack-md fw-lg">
+                            <i class="fw fw-user fw-stack-1-5x"></i>
+                        </span>
+                        {{cuser.username}}
+                        <span class="caret"></span>
+                    </div>
+                </a>
+                <div class="dropdown-menu">
+                    <div class="cu-arrow"></div>
+                    <div class="dropdown-menu-content">
+                        <a class="filter-item" onclick="window.location.href='{{url "/logout"}}'">{{t "Sign out"}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="wr-auth pull-right">
+            {{#if cuser.isSuperTenant}}
+                <a class="auth-img" href="{{storeUrl}}" target="_blank">{{t "Go to Store"}}</a>
+            {{else}}
+                <a class="auth-img" href="{{storeUrl}}/t/{{cuser.tenantDomain}}" target="_blank">{{t "Go to Store"}}</a>
+            {{/if}}
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- /header -->

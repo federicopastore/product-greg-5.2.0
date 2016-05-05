@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.wso2.greg</groupId>
+        <artifactId>integration</artifactId>
+        <version>5.2.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <name>Registry Integration Test Module</name>
+    <artifactId>org.wso2.greg.integration.tests</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>tests-resources</module>
+        <module>tests-metadata</module>
+        <module>tests-lifecycle</module>
+        <module>tests-permissions</module>
+        <module>tests-extensibility</module>
+        <module>tests-governance-api</module>
+        <module>tests-smoke</module>
+        <module>tests-es</module>
+        <!-- <module>tests-load</module>-->
+        <module>tests-jiras</module>
+        <module>tests-search-version</module>
+        <module>tests-soapservice</module>
+        <module>cmis-tck</module>
+        <module>reports</module>
+    </modules>
+
+</project>

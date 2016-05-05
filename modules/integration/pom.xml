@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>org.wso2.greg</groupId>
+        <artifactId>governance-parent</artifactId>
+        <version>5.2.0</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>integration</artifactId>
+    <name>WSO2 Governance Registry - Integration Tests</name>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>tests-artifacts</module>
+        <module>tests-common/admin-clients</module>
+        <module>tests-common/ui-pages</module>
+        <module>tests-common/integration-test-utils</module>
+        <module>tests-common/test-artifacts</module>
+        <module>tests-common/platform-tests-utils</module>
+        <module>tests-integration</module>
+        <module>tests-ui-integration</module>
+        <!--<module>tests-platform</module>-->
+    </modules>
+
+</project>

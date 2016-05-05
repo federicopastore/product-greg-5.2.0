@@ -1,0 +1,28 @@
+<%
+var usrName = request.getParameter('name');
+var pass = request.getParameter('pass');
+var host = request.getParameter('host');
+var log = new Log();
+var getAdminCookie = function () {
+
+	var carbon = require('carbon');
+	var server = new carbon.server.Server({url: host});
+	var loginSuccess = server.authenticate(usrName,pass);
+
+	if (loginSuccess) {
+		return true;
+	} else {
+		return null;	
+	}	
+};
+
+var cookie = getAdminCookie();
+if(cookie != null){
+	session.put("carboncookie",cookie);
+	session.put("host",host);
+	print("true");
+}else{
+	print("false");
+}
+
+%>

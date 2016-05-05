@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>{{t "Assets Page"}}</title>
+    		<link href="{{url "/themes/theme0/libs/bootstrap/css/bootstrap.css"}}" rel="stylesheet">
+	</head>
+	<body>
+		<legend>{{shortName}} 
+			<a href='/publisher/asset/{{shortName}}' class="btn btn-primary">{{t "Add"}}</a>
+		</legend>
+
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>{{t "Asset Id"}}</th>
+					<th>{{t "Asset Name"}}</th>
+					<th>{{t "View"}}</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				{{#each artifacts}}
+				<tr>
+					<td>{{this.id}}</td>
+					<td>{{this.attributes.overview_name}}</td>
+					<td>
+						<a href='/publisher/asset/{{../shortName}}/{{this.id}}'>{{t "View"}}</a>
+					</td>
+				</tr>
+				{{else}}
+					<p>{{t "No Artifacts"}}!</p>
+				{{/each}}
+			</tbody>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,14 @@
+{{#if overview_name}}
+<h4 id="asset-name" class="margin-none">{{overview_name}}</h4>
+{{else}}
+	{{#if name}}
+	<h4 id="asset-name" class="margin-none">{{name}}</h4>
+	{{/if}}
+{{/if}}
+{{#if overview_version}}
+<p id="asset-version" class="grey padding-none margin-none">{{t "Version"}} {{overview_version}}</p>
+{{else}}
+	{{#if version}}
+	<p id="asset-version" class="grey padding-none margin-none">{{t "Version"}} {{version}}</p>
+	{{/if}}
+{{/if}}

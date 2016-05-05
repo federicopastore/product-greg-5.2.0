@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.wso2.greg</groupId>
+        <artifactId>org.wso2.greg.integration.tests</artifactId>
+        <version>5.2.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <name>Registry Search and Version Test Module</name>
+    <artifactId>org.wso2.carbon.registry.test.serarch-version</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>tests-search-activity</module>
+        <module>tests-search-capp</module>
+        <module>tests-search-mediatype</module>
+        <module>tests-search-metadata</module>
+        <module>tests-search-service</module>
+        <module>tests-search-version</module>
+    </modules>
+
+</project>

@@ -1,0 +1,34 @@
+<div class="clearfix wr-association">
+    <!--<div class="wr-association-icon"><i class="fw fw-padlock"></i></div>
+    <div class="wr-security-status">Secured</div>-->
+    <div class="wr-asset-desc">
+        <div class="wr-resource-icon">
+            <i class="fw fw-{{iconClass}}"></i>
+        </div>
+        <div class="wr-asset-details" data-uuid="{{uuid}}">
+            <div class="resource-name">{{text}}
+                <span class="association-type">{{associationType}}</span>
+            </div>
+            {{#each uniqueAttributesValues}}
+            <div class="resource-unique">{{this}}</div>               
+            {{/each}}
+
+            <div class="resource-type">{{shortName}}</div>
+        </div>
+    </div>
+     <div class="wr-association-operations">
+        {{!-- <a href="#" class="cu-btn-inner">
+        <span class="fw-stack">
+        <i class="fw fw-ring fw-stack-2x"></i>
+        <i class="fw fw-edit fw-stack-1x"></i>
+        </span> Edit
+        </a> --}}
+        <a href="javascript:void(0)" data-operation="delete" class="cu-btn-inner" data-uuid="{{uuid}}"
+        data-resource-shortname="{{shortName}}" data-resource-associationtype="{{associationType}}">
+        <span class="fw-stack">
+        <i class="fw fw-ring fw-stack-2x"></i>
+        <i class="fw fw-delete fw-stack-1x"></i>
+        </span> {{t "Delete"}}
+        </a>
+    </div>
+</div>
